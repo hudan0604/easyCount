@@ -1,0 +1,6 @@
+<h1>Welcome to EasyCount !</h1>
+<div class="desc-div">EasyCount helps you and your friends easily manage your common expenses</div>
+<button *ngIf='firstDashboard; else alreadyDashboards' routerLink='/create-dashboard'>Create your first dashboard</button>
+<ng-template #alreadyDashboards>
+    <button routerLink='/create-dashboard'>Create an other dashboard</button>
+</ng-template>
