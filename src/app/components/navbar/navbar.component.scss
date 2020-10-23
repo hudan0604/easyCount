@@ -1,0 +1,30 @@
+@import '../../shared/scss/variables';
+
+#navbar {
+  overflow: hidden;
+  background-color: $easyCount-purple-main-color;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  padding: 1rem 1rem 1rem 1rem;
+  font-size: 2rem;
+
+  #logo {
+    font-weight: bold;
+    transition: 0.4s;
+  }
+
+  a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+.scrolledNav {
+  padding: 0.5rem !important;
+  font-size: 1.5rem !important;
+}

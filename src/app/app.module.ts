@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateDashboardComponent
+    CreateDashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
