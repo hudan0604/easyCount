@@ -1,8 +1,13 @@
 @import '../../shared/scss/variables';
 
+:host {
+  height: 12%;
+  display: block;
+}
+
 #navbar {
   overflow: hidden;
-  background-color: $easyCount-purple-main-color;
+  background-color: $navbar-background-color;
   transition: 0.4s;
   position: fixed;
   width: 100%;
@@ -11,6 +16,7 @@
   z-index: 99;
   padding: 1rem 1rem 1rem 1rem;
   font-size: 2rem;
+  border-bottom: 1px solid white;
 
   #logo {
     font-weight: bold;
@@ -18,9 +24,11 @@
   }
 
   a {
-    color: black;
+    color: $navbar-font-color;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
+    font-family: $navbar-font;
   }
 }
 
