@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: nothing;
+  src: url(assets/fonts/nothing.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: lato-thin;
+  src: url(assets/fonts/lato-thin.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: lato-regular;
+  src: url(assets/fonts/lato-regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: lato-bold;
+  src: url(assets/fonts/lato-bold.ttf) format("truetype");
+}
