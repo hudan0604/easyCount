@@ -49,28 +49,38 @@
     position: relative;
     font-size: 1.2rem;
     color: $link-color;
+    transition: 0.5s ease-out;
+    margin: auto;
 
     &:visited {
       color: $link-color;
     }
 
-    &::after {
+    &:after {
       content: "";
       display: block;
       position: absolute;
       height: 0.25rem;
-      transition: 0.5s ease;
       width: 100%;
       bottom: -0.35rem;
+      background: $link-color;
+      transition: 0.5s ease-in;
       right: 0;
       left: 0;
-      background: $link-color;
     }
 
-    &:hover:after {
-      width: 0%;
+    &:hover {
+      font-size: 1.3rem;
+      color: $link-hover-color;
+      transition: 0.5s ease-in;
+      width: 100%;
+    }
+
+    &:hover::after {
+      transition: 0.5s ease-in;
       margin: auto;
-      background: $link-color;
+      width: 0%;
+      background: $link-hover-color;
     }
   }
 }
