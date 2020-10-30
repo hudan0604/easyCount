@@ -4,10 +4,13 @@
   right: 0;
   bottom: 0;
   top: 0;
+  font-family: lato-regular;
 }
 
 .components-wrapper {
   display: flex;
   flex-direction: column;
   height: 88%;
+  background: radial-gradient( #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
 }
