@@ -1,13 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
+import { HomeComponent } from './components/home/home.component';
+import { ManageDashboardComponent } from './components/manage-dashboard/manage-dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +19,20 @@ import { FormInputComponent } from './components/form-input/form-input.component
     HomeComponent,
     CreateDashboardComponent,
     NavbarComponent,
-    FormInputComponent
+    FormInputComponent,
+    ButtonComponent,
+    ManageDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+    CommonModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
