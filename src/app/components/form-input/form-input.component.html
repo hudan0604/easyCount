@@ -1,4 +1,5 @@
 <div [formGroup]='parentForm'>
-  <input type='text' [placeholder]='placeholder' formControlName='person1name'>
+  <input type='text' [placeholder]='placeholder' formControlName='person{{number}}name'>
+  <div class="input-error" *ngIf="parentForm.get('person'+ number +'name').hasError('required') && parentForm.get('person'+ number +'name').touched">*The name is required</div>
 </div>
 

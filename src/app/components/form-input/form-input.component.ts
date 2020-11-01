@@ -10,6 +10,8 @@ export class FormInputComponent implements OnInit {
 
   @Input() placeholder: string;
   @Input() parentForm: FormGroup;
+  @Input() number: number;
+  @Input() clearable: boolean;
 
   constructor() { }
 
