@@ -1,4 +1,30 @@
 :host {
   height: 100%;
-  margin: 4rem auto;
+  margin: 1rem auto;
+  width: 30%;
+}
+
+.add-person {
+  display: flex;
+  justify-content: right;
+
+  fa-icon {
+    color: #403C3BED;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+.easy-button-div {
+  margin: 1rem 0 0 0;
+  cursor: pointer;
+  display: flex;
+
+  .cancel-button {
+    background: grey;
+  }
+
+  .save-button {
+    background: black;
+  }
 }

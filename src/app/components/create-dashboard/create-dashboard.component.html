@@ -1,9 +1,14 @@
   <h3>Create a dashboard</h3>
 
   <form [formGroup]='addPeopleForm'>
-    <easy-form-input [placeholder]='person1placeholder' [parentForm]="addPeopleForm"></easy-form-input>
+    <easy-form-input *ngFor='let input of inputs; index as i' [placeholder]='placeholder(i+1)' [number]='i+1' [parentForm]='addPeopleForm' [clearable]='true'></easy-form-input>
   </form>
 
-  <div>
-    <div>Add a person to the dashboard</div>
+  <div class="add-person" (click)='addInputToForm()'>
+    <fa-icon [icon]='faUserPlus'></fa-icon>
+  </div>
+
+  <div class="easy-button-div">
+    <easy-button buttonText='Cancel' routerLink='/' class="button-cancel-button"></easy-button>
+    <easy-button buttonClass="button-validate-background" [disabled]='addPeopleForm.invalid' buttonText="Let's Go !" (click)='save(addPeopleForm.value)'></easy-button>
   </div>
