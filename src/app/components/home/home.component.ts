@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'easy-home',
@@ -14,6 +15,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.firstDashboard = this.localStorage.get('dashboards') ? false : true;
+    this.firstDashboard = this.localStorage.get('numberOfDashboards') ? false : true;
   }
 }
