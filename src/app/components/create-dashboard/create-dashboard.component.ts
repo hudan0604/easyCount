@@ -16,6 +16,8 @@ export class CreateDashboardComponent implements OnInit {
   person1name: FormControl;
   inputs = ['1'];
   faUserPlus = faUserPlus;
+  buttonValidateBackground = 'button-validate-background';
+  buttonCancelBackground = 'button-cancel-background';
 
   constructor(
     private fb: FormBuilder,
