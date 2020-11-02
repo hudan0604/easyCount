@@ -1,0 +1,32 @@
+$navbar-background-color: #232a2a;
+$navbar-font-color: #a19898;
+$link-color: white;
+$link-hover-color:  rgba(26, 22, 22, 0.747);
+
+// fonts
+$navbar-font: nothing;
+$body-font-thin: lato-thin;
+$body-font-regular: lato-regular;
+$body-font-bold: lato-bold;
+
+//buttons backgrounds map
+$buttons-backgrounds : (
+  'validate': (
+    'background': black,
+    'color': white
+  ),
+  'cancel': (
+    'background': white,
+    'color': black
+  )
+);
+
+@function setValue($map, $key, $prop) {
+@if map-has-key($map, $key) {
+  @return map-get(map-get($map, $key), $prop);
+}
+
+@else {
+  @return map-get($map , $prop)
+}
+}
