@@ -24,11 +24,50 @@
   height: 50%;
   margin: 5rem auto;
   text-align: center;
+}
 
-  h1 {
-    height: 25%;
-    margin: 0;
-    font-family: $body-font-bold;
+@keyframes movingLetters {
+  0% {
+    bottom: -0.2em;
+    opacity: 1;
+    color: #3E5C76;
+  }
+
+  30% {
+
+      color: #c45999;
+  }
+
+  60% {
+    bottom: 0.2em;
+    color: rgb(163, 131, 71);
+  }
+
+  100% {
+      bottom: 0;
+      opacity: 1;
+      color: black;
+  }
+}
+
+h1 {
+  height: 25%;
+  margin: 0 auto;
+  font-family: lato-bold;
+  color: black;
+  bottom: -1em;
+  }
+
+  h1 span span {
+    position: relative;
+  }
+
+  span span {
+    animation: movingLetters 0.75s;
+  }
+
+  @for $i from 1 through 22 {
+    span span:nth-child(#{$i}) { animation-delay: 0.2s +$i/10; }
   }
 
   .desc-div {
@@ -83,4 +122,3 @@
       background: $link-hover-color;
     }
   }
-}

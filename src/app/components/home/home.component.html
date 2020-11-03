@@ -1,5 +1,9 @@
 <div class="text-wrapper">
-  <h1>Welcome to EasyCount !</h1>
+  <h1>
+    <span>
+      <span *ngFor='let letter of title'>{{letter}}</span>
+    </span>
+  </h1>
   <div class="desc-div">EasyCount helps you and your friends easily manage your common expenses</div>
   <a *ngIf='firstDashboard; else alreadyDashboards' routerLink='/create-dashboard'>Create your first dashboard</a>
   <ng-template #alreadyDashboards>
