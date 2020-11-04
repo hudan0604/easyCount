@@ -1,8 +1,11 @@
 @import '../../shared/scss/themes/buttons.themes';
 
 :host {
-  height: 12%;
-  display: block;
+  top: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 13%;
 }
 
 #navbar {
@@ -17,6 +20,20 @@
   padding: 1rem 1rem 1rem 1rem;
   font-size: 2rem;
   border-bottom: 1px solid white;
+  height: 7%;
+
+  fa-icon {
+    color: #4594c6;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.5s ease-in;
+
+    &:hover {
+      transform: rotate(90deg);
+      color: pink;
+    }
+  }
 
   #logo {
     font-weight: bold;
