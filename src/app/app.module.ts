@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { HomeComponent } from './components/home/home.component';
+import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
 import { ManageDashboardComponent } from './components/manage-dashboard/manage-dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
@@ -21,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent,
     FormInputComponent,
     ButtonComponent,
-    ManageDashboardComponent
+    ManageDashboardComponent,
+    LateralMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [
   ],
