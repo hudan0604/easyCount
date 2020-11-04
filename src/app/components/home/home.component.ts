@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   firstDashboard = null;
-  title = ['W', 'e', 'l', 'c', 'o', 'm', 'e', ' ', 't', 'o', ' ', 'E', 'a', 's', 'y', 'C', 'o', 'u', 'n', 't', '!'];
+  title = ['W', 'e', 'l', 'c', 'o', 'm', 'e', ' ', 't', 'o', ' ', 'E', 'a', 's', 'y', 'C', 'o', 'u', 'n', 't', ' ', '!'];
 
   constructor(
     private localStorage: LocalStorageService,
