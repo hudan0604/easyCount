@@ -25,7 +25,6 @@ export class NavbarComponent {
 
   toggleMenu(): void {
     this.status = !this.status;
-    console.log('navbar click on menu logo - this.open = ', this.status);
     this.menuService.setLateralMenuStatus(this.status);
   }
 }
