@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
 import { ManageDashboardComponent } from './components/manage-dashboard/manage-dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidenavMenuLinkComponent } from './components/sidenav-menu-link/sidenav-menu-link.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormInputComponent,
     ButtonComponent,
     ManageDashboardComponent,
-    LateralMenuComponent
+    LateralMenuComponent,
+    SidenavMenuLinkComponent
   ],
   imports: [
     BrowserModule,
