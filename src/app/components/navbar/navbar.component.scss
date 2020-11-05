@@ -17,7 +17,7 @@
   top: 0;
   left: 0;
   z-index: 99;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 0;
   font-size: 2rem;
   border-bottom: 1px solid white;
   height: 7%;
@@ -27,12 +27,27 @@
     font-size: 1em;
     cursor: pointer;
     display: inline-block;
-    transition: 0.5s ease-in;
+    padding: 0 0.5em;
 
-    &:hover {
-      transform: rotate(90deg);
-      color: pink;
+    &.clicked {
+      transform: none;
+      transition: 0.6s ease-in;
+
+      &-true {
+        transform: rotate(90deg);
+        color: pink;
+      }
     }
+
+    // &:active {
+    //   transform: rotate(90deg);
+    //   color: pink;
+    // }
+
+    // &:hover {
+    //   transform: rotate(180deg);
+    //   color: pink;
+    // }
   }
 
   #logo {

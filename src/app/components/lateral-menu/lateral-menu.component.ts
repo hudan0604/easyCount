@@ -21,7 +21,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
       })),
       transition('open => closed', animate('0.4s')
       ),
-      transition('closed => open', animate('0.8s')
+      transition('closed => open', animate('0.6s')
       ),
     ]),
   ],
