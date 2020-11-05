@@ -31,6 +31,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LateralMenuComponent implements OnInit, OnDestroy {
   openMenu = false;
   sub: Subscription;
+  links = [{name: 'Dashboards', url: 'dashboards'}, {name: 'Data viz', url: 'data-viz'}];
 
   constructor(
     private menuService: MenuService,
