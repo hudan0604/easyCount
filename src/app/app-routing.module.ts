@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'dashboards',
+    loadChildren: () => import('../app/components/dashboards/dashboards.module').then(m => m.DashboardsModule),
+  },
+  {
     path: 'create-dashboard',
     component: CreateDashboardComponent,
   },
