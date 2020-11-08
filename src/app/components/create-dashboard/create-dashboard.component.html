@@ -1,7 +1,14 @@
-  <h3>Create a dashboard</h3>
+  <div class="title">Create a dashboard</div>
 
   <form [formGroup]='addPeopleForm'>
-    <easy-form-input *ngFor='let input of inputs; index as i' [placeholder]='placeholder(i+1)' [number]='i+1' [parentForm]='addPeopleForm' [clearable]='true'></easy-form-input>
+    <div>
+      <input placeholder='Activity name' formControlName="activityName"/>
+      <div class="input-error" *ngIf="addPeopleForm.get('activityName').hasError('required') && addPeopleForm.get('activityName').dirty">Activity name is required</div>
+    </div>
+    <div *ngFor='let input of inputs; index as i'>
+      <input [placeholder]='getPlaceholder(i+1)' [formControlName]='getPersonFormControlName(i+1)'/>
+      <div class="input-error" *ngIf="addPeopleForm.get(getPersonFormControlName(i+1)).hasError('required') && addPeopleForm.get(getPersonFormControlName(i+1)).dirty">Person name is required</div>
+    </div>
   </form>
 
   <div class="add-person" (click)='addInputToForm()'>

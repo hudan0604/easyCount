@@ -13,7 +13,6 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 export class CreateDashboardComponent implements OnInit {
 
   addPeopleForm: FormGroup;
-  person1name: FormControl;
   inputs = ['1'];
   faUserPlus = faUserPlus;
   buttonValidateBackground = 'button-validate-background';
@@ -27,9 +26,10 @@ export class CreateDashboardComponent implements OnInit {
    }
 
   initForm(): void {
-    this.person1name = new FormControl('', Validators.required);
-    this.addPeopleForm = this.fb.group({
-      person1name : this.person1name,
+    // const activityName = new FormControl('', Validators.required);
+      this.addPeopleForm = this.fb.group({
+      activityName: this.fb.control('', Validators.required),
+      person1name: this.fb.control('', Validators.required),
     });
   }
 
@@ -43,25 +43,37 @@ export class CreateDashboardComponent implements OnInit {
     this.addPeopleForm.addControl(`person${personNumber}name`, new FormControl('', Validators.required));
   }
 
-  placeholder(personNumber: number): string {
+  getPlaceholder(personNumber: number): string {
     return `person #${personNumber} name...`;
   }
 
+  getPersonFormControlName(index: number): string {
+    return `person${index}name`;
+  }
+
   save(formData: any): void {
-    const dashboardNumber = this.localStorage.get('numberOfDashboards');
+    const dashboardNumberInLocalStorage = this.localStorage.get('numberOfDashboards');
+    // tslint:disable-next-line: radix
+    const dashboardsTotal = (parseInt(dashboardNumberInLocalStorage) + 1).toString();
     /**
      * When clicking on lets go button,
      * if there are no dashboards yet in local storage,
      * set a key to tell the number of dashboards
      */
-    if (!dashboardNumber) {
+    if (!dashboardNumberInLocalStorage) {
       this.localStorage.setItem('numberOfDashboards', '1');
-      this.localStorage.setItemStringified('peopleList#1', formData);
+      this.localStorage.setItemStringified('dashboards', [{ dashboard1: formData }]);
     } else {
       // tslint:disable-next-line: radix
-      this.localStorage.setItem('numberOfDashboards', (parseInt(dashboardNumber) + 1).toString());
+      // tslint:disable-next-line: no-unused-expression
       // tslint:disable-next-line: radix
-      this.localStorage.setItemStringified(`peopleList#${(parseInt(dashboardNumber) + 1)}`, formData);
+      this.localStorage.setItem('numberOfDashboards', dashboardsTotal);
+      let dashboards = [];
+      dashboards = this.localStorage.getValueParsed('dashboards');
+      const key = `dashboard${dashboardsTotal}`;
+      dashboards.push({ [key]: formData });
+      console.log('dahboards: ', dashboards);
+      this.localStorage.setItemStringified('dashboards', dashboards);
     }
 
     this.router.navigate(['/manage-dashboard']);

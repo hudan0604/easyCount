@@ -12,7 +12,7 @@ export class LocalStorageService {
   }
 
   // get an item when its value is a stringified object
-  getValueParsed(key: string): {} {
+  getValueParsed(key: string): [{}] {
     return JSON.parse(this.get(key));
   }
 
