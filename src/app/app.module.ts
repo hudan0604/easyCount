@@ -9,12 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
-import { FormInputComponent } from './components/form-input/form-input.component';
 import { HomeComponent } from './components/home/home.component';
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
 import { ManageDashboardComponent } from './components/manage-dashboard/manage-dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SidenavMenuLinkComponent } from './components/sidenav-menu-link/sidenav-menu-link.component';
+import {
+    SidenavMenuLinkComponent
+} from './components/sidenav-menu-link/sidenav-menu-link.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,10 @@ import { SidenavMenuLinkComponent } from './components/sidenav-menu-link/sidenav
     HomeComponent,
     CreateDashboardComponent,
     NavbarComponent,
-    FormInputComponent,
     ButtonComponent,
     ManageDashboardComponent,
     LateralMenuComponent,
-    SidenavMenuLinkComponent
+    SidenavMenuLinkComponent,
   ],
   imports: [
     BrowserModule,
