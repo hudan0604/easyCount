@@ -62,7 +62,7 @@ export class CreateDashboardComponent implements OnInit {
      */
     if (!dashboardNumberInLocalStorage) {
       this.localStorage.setItem('numberOfDashboards', '1');
-      this.localStorage.setItemStringified('dashboards', [{ dashboard1: formData }]);
+      this.localStorage.setItemStringified('dashboards', [formData]);
     } else {
       // tslint:disable-next-line: radix
       // tslint:disable-next-line: no-unused-expression
@@ -70,9 +70,7 @@ export class CreateDashboardComponent implements OnInit {
       this.localStorage.setItem('numberOfDashboards', dashboardsTotal);
       let dashboards = [];
       dashboards = this.localStorage.getValueParsed('dashboards');
-      const key = `dashboard${dashboardsTotal}`;
-      dashboards.push({ [key]: formData });
-      console.log('dahboards: ', dashboards);
+      dashboards.push(formData);
       this.localStorage.setItemStringified('dashboards', dashboards);
     }
 
