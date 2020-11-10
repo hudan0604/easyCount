@@ -8,12 +8,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardsLayoutComponent } from './dashboards-layout/dashboards-layout.component';
 import { DashboardsSearchComponent } from './dashboards-search/dashboards-search.component';
 import { DashboardsListComponent } from './list/dashboards-list.component';
+import {
+    NoDashboardSelectedComponent
+} from './no-dashboard-selected/no-dashboard-selected.component';
 
 const DASHBOARDS_ROUTES: Routes = [
   {
     path: '',
     component: DashboardsLayoutComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: NoDashboardSelectedComponent,
+      }
+      ,
       {
         path: 'view/:activityName/detail',
         component: DashboardDetailComponent
@@ -29,7 +38,8 @@ const DASHBOARDS_ROUTES: Routes = [
     DashboardsSearchComponent,
     DashboardComponent,
     DashboardsListComponent,
-    DashboardDetailComponent
+    DashboardDetailComponent,
+    NoDashboardSelectedComponent
   ],
   imports: [
     CommonModule,

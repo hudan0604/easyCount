@@ -1,5 +1,5 @@
 <div class="dashboards-wraper">
-  <div *ngFor='let dashboard of dashboards' routerLink=''>
+  <div *ngFor='let dashboard of dashboards' (click)='openDetailComponent(dashboard.activityName)'>
     {{dashboard.activityName}}
   </div>
 </div>

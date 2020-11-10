@@ -1,4 +1,12 @@
 :host {
+  opacity: 0;
+  display: flex;
   width: 50%;
-  background: pink;
+}
+
+.dashboard-detail {
+  background: #cdc2cd;
+  height: 95%;
+  width: 95%;
+  margin: auto;
 }

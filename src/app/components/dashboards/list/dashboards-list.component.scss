@@ -1,6 +1,14 @@
 :host {
   height: 100%;
-  background: blue;
-  display: block;
+  display: flex;
   width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboards-wraper {
+  height: 90%;
+  border: 1px solid;
+  width: 95%;
+  background: whitesmoke;
 }
