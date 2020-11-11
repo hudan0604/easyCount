@@ -1,5 +1,14 @@
 <div class="dashboards-wraper">
-  <div *ngFor='let dashboard of dashboards' (click)='openDetailComponent(dashboard.activityName)'>
-    {{dashboard.activityName}}
-  </div>
+  <table>
+    <tr>
+      <th>Activity Name</th>
+      <th>People total</th>
+      <th>Creation date</th>
+    </tr>
+    <tr *ngFor='let dashboard of dashboards' (click)='openDetailComponent(dashboard.activityName)'>
+      <td>{{dashboard.activityName}}</td>
+      <td>total</td>
+      <td>date</td>
+    </tr>
+  </table>
 </div>
