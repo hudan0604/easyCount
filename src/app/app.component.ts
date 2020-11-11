@@ -18,6 +18,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
+  closeLateralMenu(): void {
+    this.menuService.setLateralMenuStatus(false);
+  }
+
   ngOnInit() {
     this.menuService.lateralMenuStatus
       .subscribe(

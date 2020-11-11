@@ -37,6 +37,10 @@ export class LateralMenuComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
+  hideMenu() {
+    this.menuService.setLateralMenuStatus(false);
+  }
+
   ngOnInit() {
     this.sub = this.menuService.lateralMenuStatus
       .subscribe(

@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/shared/services/menu.service';
 
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,13 +9,14 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   faMenu = faEllipsisV;
   @ViewChild('nav', {static: false}) navBar: ElementRef<HTMLElement>;
 
   isScrolled = false;
   status = false;
+  menuSub: Subscription;
   constructor(private menuService: MenuService) {}
 
   @HostListener('window:scroll', ['$event'])
@@ -24,7 +26,16 @@ export class NavbarComponent {
   }
 
   toggleMenu(): void {
-    this.status = !this.status;
-    this.menuService.setLateralMenuStatus(this.status);
+    this.menuService.setLateralMenuStatus(!this.status);
+  }
+
+  ngOnInit() {
+    this.menuSub = this.menuService.status.subscribe((status: boolean) => {
+      this.status = status;
+    });
+  }
+
+  ngOnDestroy() {
+    this.menuSub.unsubscribe();
   }
 }
