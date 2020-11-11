@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
@@ -44,6 +45,7 @@ const DASHBOARDS_ROUTES: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(DASHBOARDS_ROUTES),
+    FontAwesomeModule,
   ]
 })
 export class DashboardsModule {

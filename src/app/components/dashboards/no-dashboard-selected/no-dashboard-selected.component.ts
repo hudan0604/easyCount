@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'easy-no-dashboard-selected',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./no-dashboard-selected.component.scss']
 })
 export class NoDashboardSelectedComponent implements OnInit {
+
+  clipboard = faClipboard;
 
   constructor() { }
 
