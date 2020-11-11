@@ -7,7 +7,7 @@
     </tr>
     <tr *ngFor='let dashboard of dashboards' (click)='openDetailComponent(dashboard.activityName)'>
       <td>{{dashboard.activityName}}</td>
-      <td>total</td>
+      <td>{{dashboard | peopleNumber}}</td>
       <td>date</td>
     </tr>
   </table>
