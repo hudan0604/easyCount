@@ -1,0 +1,13 @@
+input {
+  background: #f2ececc4;
+  height: 2rem;
+  border-radius: 0.2rem;
+  border: 1px solid;
+  padding: 0 0.5rem 0 0.5rem;
+  width: 95%;
+
+  &:focus {
+    box-shadow: 0px 0px 10px rgb(219, 235, 229);
+    border: none;
+  }
+}
