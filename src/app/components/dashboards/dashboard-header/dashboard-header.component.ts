@@ -1,4 +1,10 @@
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+
+import { SearchService } from '../shared/services/search.service';
 
 @Component({
   selector: 'easy-dashboard-header',
@@ -7,9 +13,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHeaderComponent implements OnInit {
 
-  constructor() { }
+  search = faSearch;
+  searchForm: FormGroup;
+  searchCtrl: FormControl;
 
-  ngOnInit() {
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService,
+  ) { }
+
+  initForm() {
+    this.searchCtrl = this.fb.control('');
+    this.searchForm = this.fb.group({
+      searchInput: this.searchCtrl
+    });
+    this.searchCtrl.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    )
+      .subscribe((query: string) => {
+        this.searchService.setSearchValue(query);
+      });
   }
 
+  ngOnInit() {
+    this.initForm();
+  }
 }

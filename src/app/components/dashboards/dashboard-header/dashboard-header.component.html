@@ -1,1 +1,5 @@
-<div>dashboard-header works!</div>
+<div class="search-div">
+  <form [formGroup]='searchForm'>
+    <input type="text" placeholder='Search' formControlName='searchInput'><fa-icon [icon]='search'></fa-icon>
+  </form>
+</div>

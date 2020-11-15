@@ -1,4 +1,25 @@
+@import '../../../shared/scss/input.partial.scss';
+
 :host {
   height: 15%;
-  display: block;
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  align-items: center;
+}
+
+.search-div {
+  width: 35%;
+  right: 5%;
+  position: absolute;
+
+  form {
+    display: flex;
+    align-items: center;
+
+    fa-icon {
+      position: absolute;
+      right: 1rem;
+    }
+  }
 }
