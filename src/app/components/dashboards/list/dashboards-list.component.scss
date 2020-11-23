@@ -12,10 +12,16 @@
   background: #f5f5f573;
 }
 
+.table-wraper {
+  height: 90%;
+  overflow-y: scroll;
+  margin: 1em auto;
+  width: 90%;
+}
+
 table {
   border-collapse: collapse;
-  margin: 3em auto;
-  width: 80%;
+  width: 100%;
 
   th {
     background: #e11688;
