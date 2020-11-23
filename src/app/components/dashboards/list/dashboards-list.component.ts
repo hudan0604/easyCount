@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { DashboardModel } from 'src/app/shared/models/dashboards.models';
+import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
@@ -24,8 +25,7 @@ import { SearchService } from '../shared/services/search.service';
   ],
 })
 export class DashboardsListComponent implements OnInit, OnDestroy {
-  dashboards: any = [{
-  }];
+  dashboards: any = [{}];
   animationSub: Subscription;
   searchSub: Subscription;
   reduce = false;
@@ -35,7 +35,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private localStorageService: LocalStorageService,
+    private dashboardService: DashboardsService,
     private router: Router,
     private route: ActivatedRoute,
     private dashboardsAnimationService: OpenAnimationService,
@@ -54,9 +54,8 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
 
   dashboardsMatchingSearchQuery(searchQuery: string): [{}] {
     return this.dashboards = this.dashboards
-      // dashboard has 'any' type because we don't know precisely the total of people in it
-      .filter((eachDashboard: any) => {
-        return Object.values(eachDashboard).find((str: string) => str.includes(searchQuery));
+      .filter((eachDashboard: DashboardModel) => {
+        return eachDashboard.activityName.includes(searchQuery);
       });
   }
 
@@ -65,7 +64,10 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
       .subscribe((status: boolean) => this.reduce = status);
     this.searchSub = this.searchService.getSearchValue()
       .subscribe((value: string) => {
-        value ? this.dashboardsMatchingSearchQuery(value) : this.dashboards = this.localStorageService.getValueParsed('dashboards');
+        // tslint:disable-next-line: max-line-length
+        value ? this.dashboardsMatchingSearchQuery(value) : this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
+          this.dashboards = dashboards;
+        });
       });
   }
 

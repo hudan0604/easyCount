@@ -12,7 +12,6 @@ export class SearchService {
   constructor() { }
 
   setSearchValue(value: string) {
-    console.log('set query value in service', value);
     this.searchValue.next(value);
   }
 
