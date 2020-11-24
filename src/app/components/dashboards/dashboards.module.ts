@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { LoadingComponent } from '../loading/loading.component';
 import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardsLayoutComponent } from './dashboards-layout/dashboards-layout.component';
 import { DashboardsListComponent } from './list/dashboards-list.component';
-import { ObjectLengthPipe } from './list/object-length.pipe';
 import {
     NoDashboardSelectedComponent
 } from './no-dashboard-selected/no-dashboard-selected.component';
@@ -28,6 +29,10 @@ const DASHBOARDS_ROUTES: Routes = [
       {
         path: 'view/:activityName/detail',
         component: DashboardDetailComponent
+      },
+      {
+        path: '**',
+        redirectTo: ''
       }
     ]
   },
@@ -41,14 +46,15 @@ const DASHBOARDS_ROUTES: Routes = [
     DashboardsListComponent,
     DashboardDetailComponent,
     NoDashboardSelectedComponent,
-    ObjectLengthPipe
+    LoadingComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(DASHBOARDS_ROUTES),
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class DashboardsModule {
