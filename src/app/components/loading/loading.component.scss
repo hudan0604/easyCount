@@ -1,0 +1,23 @@
+:host {
+  margin: 12% auto;
+  position: absolute;
+}
+
+@for $i from 1 through 3 {
+  circle:nth-child(#{$i}) { animation-delay: 0.2s +$i/5; }
+}
+
+circle {
+  animation: turnAround 1s infinite alternate;
+}
+
+@keyframes turnAround {
+  0% {
+    transform-origin: center;
+    transform: rotate(0deg);
+  }
+  100% {
+    transform-origin: center;
+    transform: rotate(360deg);
+  }
+}

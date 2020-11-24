@@ -17,6 +17,7 @@ import { SearchService } from '../shared/services/search.service';
 export class DashboardsListComponent implements OnInit, OnDestroy {
   dashboards: any = [{}];
   searchSub: Subscription;
+  isLoading = false;
 
   constructor(
     private dashboardService: DashboardsService,
@@ -36,22 +37,39 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
     this.router.navigate([`view/${activityName}/detail`], { relativeTo: this.route });
   }
 
-  dashboardsMatchingSearchQuery(searchQuery: string): [{}] {
-    return this.dashboards = this.dashboards
+  checkIfTheSearchMatchesDashboards(searchQuery: string) {
+    this.isLoading = true;
+    this.dashboards = this.dashboards
       .filter((eachDashboard: DashboardModel) => {
+        if (eachDashboard.activityName.includes(searchQuery)) {
+          this.isLoading = false;
+       }
         return eachDashboard.activityName.includes(searchQuery);
       });
+    this.isLoading = false;
   }
 
-  ngOnInit() {
+  checkIfUserHasSearchedSomething() {
     this.searchSub = this.searchService.getSearchValue()
       .subscribe((value: string) => {
         // tslint:disable-next-line: max-line-length
-        value ? this.dashboardsMatchingSearchQuery(value) : this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
-          this.dashboards = dashboards;
-
-        });
+        if (value) {
+          this.checkIfTheSearchMatchesDashboards(value);
+        } else { this.getDashboards(); }
       });
+  }
+
+  getDashboards() {
+    this.isLoading = true;
+    this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
+      this.dashboards = dashboards;
+      this.isLoading = false;
+    });
+  }
+
+  ngOnInit() {
+    this.checkIfUserHasSearchedSomething();
+    this.getDashboards();
   }
 
   ngOnDestroy() {
