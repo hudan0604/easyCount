@@ -13,26 +13,10 @@ import { SearchService } from '../shared/services/search.service';
   selector: 'easy-dashboards-list',
   templateUrl: './dashboards-list.component.html',
   styleUrls: ['./dashboards-list.component.scss'],
-  animations: [
-    trigger('reduceWidth', [
-      // ...
-      state('reduce', style({
-        width: '30%',
-      })),
-      transition('* => reduce', animate('0.4s')
-      ),
-    ]),
-  ],
 })
 export class DashboardsListComponent implements OnInit, OnDestroy {
   dashboards: any = [{}];
-  animationSub: Subscription;
   searchSub: Subscription;
-  reduce = false;
-
-  @HostBinding('@reduceWidth') get reduceWidth(): string {
-    return this.reduce ? 'reduce' : '';
-  }
 
   constructor(
     private dashboardService: DashboardsService,
@@ -60,20 +44,18 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.animationSub = this.dashboardsAnimationService._dashboardAnimationOn
-      .subscribe((status: boolean) => this.reduce = status);
     this.searchSub = this.searchService.getSearchValue()
       .subscribe((value: string) => {
         // tslint:disable-next-line: max-line-length
         value ? this.dashboardsMatchingSearchQuery(value) : this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
           this.dashboards = dashboards;
+
         });
       });
   }
 
   ngOnDestroy() {
     this.dashboardsAnimationService.setAnimationStatus(false);
-    this.animationSub.unsubscribe();
     this.searchSub.unsubscribe();
   }
 }
