@@ -10,19 +10,13 @@ import { OpenAnimationService } from '../shared/services/open-animation.service'
   templateUrl: './dashboard-detail.component.html',
   styleUrls: ['./dashboard-detail.component.scss'],
   animations: [
-    trigger('toggleAnimation', [
-      state('open',
-        style({ opacity: 1, width: '70%' }),
-      ),
-      state('close',
-        style({ opacity: 0, width: 0 }),
-      ),
-      transition('closed <=> open', animate('2s')),
-    ]),
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('2s', style({ opacity: 1 })),
+    animate('2s', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 0 }), animate('2s'),
       ]),
     ]),
   ],
