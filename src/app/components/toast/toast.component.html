@@ -1,0 +1,10 @@
+<div @fadeAnimation *ngIf='config.open' class="toast" [ngClass]="{'toast-error': config.toastStatus ==='error', 'toast-success': config.toastStatus === 'success'}">
+  <div *ngIf="config.toastStatus ==='success'" class="icon-div">
+    <fa-icon [icon]='successIcon'></fa-icon>
+  </div>
+  <div *ngIf="config.toastStatus ==='error'" class="icon-div">
+    <fa-icon [icon]='failIcon'></fa-icon>
+  </div>
+  <!-- Toast text content -->
+  <div>{{config.content}}</div>
+</div>

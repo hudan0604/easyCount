@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {
     SidenavMenuLinkComponent
 } from './components/sidenav-menu-link/sidenav-menu-link.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import {
     ManageDashboardComponent,
     LateralMenuComponent,
     SidenavMenuLinkComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import {
     ReactiveFormsModule,
     FontAwesomeModule,
     CommonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
   ],

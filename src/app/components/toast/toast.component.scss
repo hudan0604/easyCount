@@ -1,0 +1,35 @@
+:host {
+  left: 20rem;
+  right: 20rem;
+  position: absolute;
+  z-index: 126;
+  margin: 3rem auto;
+}
+
+.toast{
+  height: 2.5em;
+  border-radius: 4px;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+
+  .icon-div {
+    width: 10%;
+  }
+
+  &-error {
+    background: rgb(245, 184, 184);
+
+    fa-icon {
+      color: rgb(233, 47, 47);
+    }
+  }
+
+  &-success {
+    background: #c1e5c1e8;
+
+    fa-icon {
+      color: green;
+    }
+  }
+}
