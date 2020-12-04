@@ -21,28 +21,21 @@
   justify-content: center;
 }
 
-table {
+.table {
   border-collapse: collapse;
   width: 100%;
 
-  th {
+  .header-wraper {
+    display: flex;
     background: #e11688;
     color: white;
-  }
+    height: 2rem;
+    align-items: center;
 
-  tr {
-    border-bottom: 1px solid grey;
-
-    &:nth-child(odd) {
-      background: #e8e3df;
+    .header {
+      flex: 1;
+      justify-content: center;
+      display: flex;
     }
-
-    &:nth-child(even) {
-      background: #ddebec;
-    }
-  }
-
-  td {
-    text-align: center;
   }
 }

@@ -1,17 +1,14 @@
 <div class="dashboards-wraper">
   <div class="table-wraper">
     <easy-loading *ngIf='isLoading'></easy-loading>
-    <table>
-      <tr>
-        <th>Activity Name</th>
-        <th>People total</th>
-        <th>Creation date</th>
-      </tr>
-      <tr *ngFor='let dashboard of dashboards' (click)='openDetailComponent(dashboard.activityName)'>
-        <td>{{dashboard.activityName}}</td>
-        <td>{{dashboard.people.length}}</td>
-        <td>{{dashboard.creationDate}}</td>
-      </tr>
-    </table>
+    <div class="table">
+      <div class="header-wraper">
+        <div class="header">Activity Name</div>
+        <div class="header">People total</div>
+        <div class="header">Creation date</div>
+      </div>
+      <easy-row *ngFor='let dashboard of dashboards; index as i' [dashboard]='dashboard' [rowIndex]='i' [hideBackgroundSelectedRows]='hideBackgroundOfSelectedRow' (click)='openDetailComponent(dashboard.activityName); setRowIndex(i); hideBackgroundOfSelectedRows()'>
+      </easy-row>
+    </div>
   </div>
 </div>

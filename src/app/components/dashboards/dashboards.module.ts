@@ -14,6 +14,8 @@ import { DashboardsListComponent } from './list/dashboards-list.component';
 import {
     NoDashboardSelectedComponent
 } from './no-dashboard-selected/no-dashboard-selected.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { RowComponent } from './row/row.component';
 
 const DASHBOARDS_ROUTES: Routes = [
   {
@@ -46,7 +48,9 @@ const DASHBOARDS_ROUTES: Routes = [
     DashboardsListComponent,
     DashboardDetailComponent,
     NoDashboardSelectedComponent,
-    LoadingComponent
+    LoadingComponent,
+    CheckboxComponent,
+    RowComponent
   ],
   imports: [
     CommonModule,

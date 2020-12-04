@@ -1,9 +1,5 @@
-import { Subscription } from 'rxjs';
-
-import { animate, group, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-
-import { OpenAnimationService } from '../shared/services/open-animation.service';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'easy-dashboard-detail',
@@ -21,26 +17,5 @@ import { OpenAnimationService } from '../shared/services/open-animation.service'
     ]),
   ],
 })
-export class DashboardDetailComponent implements OnInit, OnDestroy {
-
-  show = false;
-  animationSub: Subscription;
-
-  @HostBinding('@toggleAnimation')
-  get toggleAnimation(): string {
-    return this.show ? 'open' : 'close';
-  }
-
-  constructor(private animationService: OpenAnimationService) { }
-
-  ngOnInit() {
-    this.animationSub = this.animationService._dashboardAnimationOn
-      .subscribe((status: boolean) => this.show = status);
-  }
-
-  ngOnDestroy() {
-    this.animationSub.unsubscribe();
-    this.animationService.setAnimationStatus(false);
-  }
-
+export class DashboardDetailComponent {
 }

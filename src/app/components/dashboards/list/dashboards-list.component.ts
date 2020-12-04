@@ -1,12 +1,11 @@
 import { Subscription } from 'rxjs';
 import { DashboardModel } from 'src/app/shared/models/dashboards.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
+import { RowSelectedService } from 'src/app/shared/services/row-selected.service';
 
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { OpenAnimationService } from '../shared/services/open-animation.service';
 import { SearchService } from '../shared/services/search.service';
 
 @Component({
@@ -15,27 +14,25 @@ import { SearchService } from '../shared/services/search.service';
   styleUrls: ['./dashboards-list.component.scss'],
 })
 export class DashboardsListComponent implements OnInit, OnDestroy {
-  dashboards: any = [{}];
+  dashboards: DashboardModel[] = [{
+    activityName: '',
+    creationDate: '',
+    people: ['']
+  }];
   searchSub: Subscription;
   isLoading = false;
+  dashboardsSub: Subscription;
+  checkboxChecked = false;
+  rowActive = false;
+  hideBackgroundOfSelectedRow = false;
 
   constructor(
     private dashboardService: DashboardsService,
+    private searchService: SearchService,
     private router: Router,
     private route: ActivatedRoute,
-    private dashboardsAnimationService: OpenAnimationService,
-    private searchService: SearchService,
+    private rowSelectedService: RowSelectedService,
   ) { }
-
-  /**
-   * @param activityName: dashboard name
-   * need it to construct a custom URL
-   * and navigate to the dahsboards details component
-   */
-  openDetailComponent(activityName: string): void {
-    this.dashboardsAnimationService.setAnimationStatus(true);
-    this.router.navigate([`view/${activityName}/detail`], { relativeTo: this.route });
-  }
 
   checkIfTheSearchMatchesDashboards(searchQuery: string) {
     this.isLoading = true;
@@ -61,10 +58,27 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
 
   getDashboards() {
     this.isLoading = true;
-    this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
+    this.dashboardsSub = this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
       this.dashboards = dashboards;
       this.isLoading = false;
     });
+  }
+
+  /**
+   * @param activityName: dashboard name
+   * need it to construct a custom URL
+   * and navigate to the dahsboards details component
+   */
+  openDetailComponent(activityName: string): void {
+    this.router.navigate([`view/${activityName}/detail`], { relativeTo: this.route });
+  }
+
+  setRowIndex(index: number) {
+    this.rowSelectedService.setRowIndex(index);
+  }
+
+  hideBackgroundOfSelectedRows() {
+    this.hideBackgroundOfSelectedRow = !this.hideBackgroundOfSelectedRow;
   }
 
   ngOnInit() {
@@ -73,7 +87,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.dashboardsAnimationService.setAnimationStatus(false);
     this.searchSub.unsubscribe();
+    this.dashboardsSub.unsubscribe();
   }
 }

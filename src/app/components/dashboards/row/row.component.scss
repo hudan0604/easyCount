@@ -1,0 +1,28 @@
+.row {
+  border-bottom: 1px solid grey;
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  cursor: pointer;
+
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    .activityName {
+      width: 75%;
+      text-align: left;
+    }
+  }
+}
+
+.highlight-selected {
+  background: gray !important;
+}
+
+.row-active {
+  background: pink;
+}
