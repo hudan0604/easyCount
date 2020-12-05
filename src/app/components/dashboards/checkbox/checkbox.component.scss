@@ -1,16 +1,23 @@
-:host {
-  width: 3rem;
-}
-
 .checkbox {
   text-align: left;
-  border: 1px solid;
-  height: 12px;
+  border: 1px solid gray;
+  height: 0.8rem;
   margin: 0 1rem;
   border-radius: 2px;
   cursor: pointer;
+  width: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 3px;
+
+  fa-icon {
+    font-size: 0.8rem;
+    color: wheat;
+  }
 }
 
 .checked {
-  background: #397a9a;
+  background: #0da4ed;
+  border: none;
 }

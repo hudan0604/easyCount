@@ -1,1 +1,3 @@
-<div class="checkbox" (click)='toggleCheck(); $event.stopPropagation()' [class.checked]='checked'></div>
+<div class="checkbox" (click)='toggleCheck(); $event.stopPropagation()' [class.checked]='checked'>
+  <fa-icon [icon]='check' *ngIf='checked'></fa-icon>
+</div>

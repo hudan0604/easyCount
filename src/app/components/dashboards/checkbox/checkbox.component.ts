@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'easy-checkbox',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 })
 export class CheckboxComponent implements OnChanges {
   checked = false;
+  check = faCheck;
   @Input() unCheckCheckbox: boolean;
   @Output() checkboxClickedHighlightRow = new EventEmitter<boolean>();
 
