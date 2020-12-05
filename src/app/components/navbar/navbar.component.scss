@@ -31,23 +31,13 @@
 
     &.clicked {
       transform: none;
-      transition: 0.6s ease-in;
+      transition: 0.4s ease-in;
 
       &-true {
         transform: rotate(90deg);
         color: pink;
       }
     }
-
-    // &:active {
-    //   transform: rotate(90deg);
-    //   color: pink;
-    // }
-
-    // &:hover {
-    //   transform: rotate(180deg);
-    //   color: pink;
-    // }
   }
 
   #logo {

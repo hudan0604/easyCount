@@ -13,15 +13,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
         width: '200px',
         backgroundColor: '#d5cfcc',
         height: '100%',
+        visibility: 'visible'
       })),
       state('closed', style({
         width: '0px',
         opacity: 0,
         height: '100%'
       })),
-      transition('open => closed', animate('0.4s')
-      ),
-      transition('closed => open', animate('0.6s')
+      transition('open <=> closed', animate('0.4s')
       ),
     ]),
   ],

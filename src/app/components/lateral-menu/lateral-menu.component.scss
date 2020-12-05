@@ -4,8 +4,10 @@
   height: 87%;
   left: 0;
   width: 12rem;
+  visibility: hidden;
 }
 
 .links-wraper {
   box-shadow: 2px 0px 8px #f7f1f1;
+  background: linear-gradient(to right, rgb(160, 160, 199), #7c7ce3, rgb(76, 78, 227)) repeat scroll 0% 0%;
 }
