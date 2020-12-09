@@ -118,9 +118,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   resetSelectedRows() {
-    console.log('before function');
     this.localStorage.removeItem('dashboards-to-delete');
-    console.log('after function');
     this.refreshListOfDashboardsToDeleteInLS();
   }
 
