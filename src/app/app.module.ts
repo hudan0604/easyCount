@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './components/button/button.component';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
@@ -25,7 +24,6 @@ import { ToastComponent } from './components/toast/toast.component';
     HomeComponent,
     CreateDashboardComponent,
     NavbarComponent,
-    ButtonComponent,
     ManageDashboardComponent,
     LateralMenuComponent,
     SidenavMenuLinkComponent,
