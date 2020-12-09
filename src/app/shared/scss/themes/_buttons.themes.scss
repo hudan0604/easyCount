@@ -1,32 +1,38 @@
-$navbar-background-color: #232a2a;
-$navbar-font-color: #a19898;
-$link-color: white;
-$link-hover-color:  rgba(26, 22, 22, 0.747);
+button {
+  width: 8rem;
+  border-radius: 1rem;
+  border: none;
+  height: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
 
-// fonts
-$navbar-font: nothing;
-$body-font-thin: lato-thin;
-$body-font-regular: lato-regular;
-$body-font-bold: lato-bold;
+  &.validate {
+    background: hsl(240, 75%, 58%);
+    color: white;
 
-//buttons backgrounds map
-$buttons-backgrounds : (
-  'validate': (
-    'background': rgb(69, 56, 184),
-    'color': white
-  ),
-  'cancel': (
-    'background': white,
-    'color': black
-  )
-);
+    &:hover {
+      color:  hsl(240, 75%, 58%);
+      background: white;
+    }
+  }
 
-@function setValue($map, $key, $prop) {
-@if map-has-key($map, $key) {
-  @return map-get(map-get($map, $key), $prop);
-}
+  &.cancel {
+    background: none;
+    color: black;
+    font-size: 1rem;
 
-@else {
-  @return map-get($map , $prop)
-}
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.danger {
+    background: #e42b2b;
+    color: white;
+
+    &:hover {
+      background: white;
+      color: #e42b2b;
+    }
+  }
 }
