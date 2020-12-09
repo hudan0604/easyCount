@@ -1,10 +1,12 @@
 @import '../../../shared/scss/themes/buttons.themes';
 
 :host {
-  height: 100%;
+  height: 95%;
   display: flex;
-  width: 50%;
-  justify-content: center;
+  flex: 1.5;
+  background: #f5f5f573;
+  margin: 0 auto;
+  flex-direction: column;
 }
 
 .dashboards-wraper {
@@ -21,16 +23,12 @@
   padding: 0.5rem 0;
   display: flex;
   align-items: center;
+  height: 10%;
 
   .button-to-delete {
     flex: 0.8;
-  }
-
-  .dashboards-selected-text {
-
-  }
 }
-
+}
 .table-wraper {
   height: 90%;
   overflow-y: auto;

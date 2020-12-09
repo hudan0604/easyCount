@@ -1,11 +1,11 @@
 :host {
   background: #f5f5f573;
   height: 95%;
-  margin: 0 auto;
-  width: 47.5%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 1rem;
 }
 
 .no-dashboard-wraper {
