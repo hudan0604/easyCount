@@ -18,7 +18,7 @@ export class RowSelectedService {
     this.rowSelectedId.next(index);
   }
 
-  setActiveBackgroundToTrue(status: true) {
+  deleteBackgroundFromActiveRow(status: true) {
     this.deleteActiveBackground.next(status);
   }
 }

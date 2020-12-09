@@ -7,8 +7,15 @@
         <div class="header">People total</div>
         <div class="header">Creation date</div>
       </div>
-      <easy-row *ngFor='let dashboard of dashboards; index as i' [dashboard]='dashboard' [rowIndex]='i' [hideBackgroundSelectedRows]='hideBackgroundOfSelectedRow' (click)='openDetailComponent(dashboard.activityName); setRowIndex(i); hideBackgroundOfSelectedRows()'>
+      <easy-row *ngFor='let dashboard of dashboards; index as i' [dashboard]='dashboard' [rowIndex]='i' [hideBackgroundSelectedRows]='hideBackgroundOfSelectedRow' (click)="openDetailComponent(dashboard.activityName); setRowIndex(i); hideBackgroundOfSelectedRows(); resetSelectedRows()">
       </easy-row>
     </div>
   </div>
+  <div *ngIf='dashboardsToDeleteListToBeSentToBackend && dashboardsToDeleteListToBeSentToBackend.length > 0' class="to-delete-wraper">
+    <div class="button-to-delete">
+      <button class="danger" (click)='deleteSelectedDashboards()'>Delete</button>
+    </div>
+      <div class="dashboards-selected-text">{{dashboardsToDeleteListToBeSentToBackend.length}} dashboard(s) selected</div>
+  </div>
 </div>
+

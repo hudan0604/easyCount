@@ -1,20 +1,39 @@
+@import '../../../shared/scss/themes/buttons.themes';
+
 :host {
   height: 100%;
   display: flex;
   width: 50%;
   justify-content: center;
-  align-items: center;
 }
 
 .dashboards-wraper {
-  height: 90%;
+  height: 95%;
   width: 95%;
   background: #f5f5f573;
+  display: flex;
+  flex-direction: column;
+}
+
+.to-delete-wraper {
+  width: 90%;
+  margin: auto;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+
+  .button-to-delete {
+    flex: 0.8;
+  }
+
+  .dashboards-selected-text {
+
+  }
 }
 
 .table-wraper {
   height: 90%;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin: 1em auto;
   width: 90%;
   display: flex;
@@ -27,7 +46,7 @@
 
   .header-wraper {
     display: flex;
-    background: #e11688;
+    background: #bd6797;
     color: white;
     height: 2rem;
     align-items: center;

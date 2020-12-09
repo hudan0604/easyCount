@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { DashboardModel } from 'src/app/shared/models/dashboards.models';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { RowSelectedService } from 'src/app/shared/services/row-selected.service';
 
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
@@ -19,20 +20,56 @@ export class RowComponent implements OnInit, OnChanges, OnDestroy {
   rowActive = false;
   uncheck = false;
   checkboxCheckedSub: Subscription;
+  dashboardsToDelete = [];
+  dashboardsListInLS: any;
 
   constructor(
     private rowSelectedService: RowSelectedService,
+    private localStorage: LocalStorageService,
   ) { }
 
-  highlightSelectedRows(status: boolean): void {
+  /**
+   * @param status boolean that indicates if we check and highlight the row
+   */
+  highlightSelectedRows(status: boolean, dashboardId: string): void {
+    // if checkbox is checked, delete the background of the active row (if exists)
     if (status) {
-      this.rowSelectedService.setActiveBackgroundToTrue(true);
+      this.addDashboardToListThatWillBeRemoved(dashboardId);
+      this.rowSelectedService.deleteBackgroundFromActiveRow(true);
+    } else {
+      this.deleteDashboardFromListThatWillBeRemoved(dashboardId);
     }
+    /**
+     * if checkbox is checked, we set a background for its row
+     * if checkbox is unchecked, we delete its background
+     */
     this.highlightSelected = status;
+  }
+
+  /**
+   * @param id the id of the dashboard we want to remove
+   */
+  addDashboardToListThatWillBeRemoved(dashboardId: string) {
+    const dashboardsInLS = this.localStorage.getValueParsed('dashboards-to-delete');
+    const listToDelete = dashboardsInLS ? dashboardsInLS : [];
+    listToDelete.push(dashboardId.toString());
+    this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
+    this.refreshListOfDashboardsToDeleteInLS();
+  }
+
+  deleteDashboardFromListThatWillBeRemoved(dashboardId: string) {
+    let listToDelete = this.localStorage.getValueParsed('dashboards-to-delete');
+    listToDelete = listToDelete.filter((id: string) => id !== dashboardId);
+    this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
+    this.refreshListOfDashboardsToDeleteInLS();
   }
 
   setRowIndexInService() {
     this.rowSelectedService.setRowIndex(this.rowIndex);
+  }
+
+  refreshListOfDashboardsToDeleteInLS() {
+    this.localStorage.refreshValueOfDashboardsListWeWantToDelete();
   }
 
   ngOnInit() {

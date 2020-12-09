@@ -1,9 +1,11 @@
 import { Subscription } from 'rxjs';
 import { DashboardModel } from 'src/app/shared/models/dashboards.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { RowSelectedService } from 'src/app/shared/services/row-selected.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SearchService } from '../shared/services/search.service';
@@ -25,6 +27,9 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   checkboxChecked = false;
   rowActive = false;
   hideBackgroundOfSelectedRow = false;
+  dashboardsListWeWantToDeleteSubscription: Subscription;
+  dashboardsToDeleteListToBeSentToBackend: string[] | null;
+  deleteDashboardsSubscription: Subscription;
 
   constructor(
     private dashboardService: DashboardsService,
@@ -32,6 +37,8 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private rowSelectedService: RowSelectedService,
+    private localStorage: LocalStorageService,
+    private toastService: ToastService,
   ) { }
 
   checkIfTheSearchMatchesDashboards(searchQuery: string) {
@@ -52,16 +59,19 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line: max-line-length
         if (value) {
           this.checkIfTheSearchMatchesDashboards(value);
-        } else { this.getDashboards(); }
+        } else { this.getDashboardsFromBackend(); }
       });
   }
 
-  getDashboards() {
+  getDashboardsFromBackend() {
     this.isLoading = true;
-    this.dashboardsSub = this.dashboardService.getDashboards().subscribe((dashboards: DashboardModel[]) => {
-      this.dashboards = dashboards;
-      this.isLoading = false;
-    });
+    this.dashboardsSub = this.dashboardService.getDashboards()
+      .subscribe((dashboards: DashboardModel[]) => {
+        this.dashboards = dashboards;
+        this.isLoading = false;
+      },
+        () => this.toastService.openToast('error', 'Error while getting dashboards from server ...')
+      );
   }
 
   /**
@@ -81,13 +91,48 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
     this.hideBackgroundOfSelectedRow = !this.hideBackgroundOfSelectedRow;
   }
 
+  deleteSelectedDashboards() {
+    const list = this.localStorage.getValueParsed('dashboards-to-delete');
+    const dataForBackend = {
+      dashboards: list
+    };
+    this.deleteDashboardsSubscription = this.dashboardService.deleteDashboards(dataForBackend)
+      .subscribe(() => {
+        this.resetSelectedRows();
+        this.getDashboardsFromBackend();
+        this.toastService.openToast('success', 'Dashboard(s) successfully deleted !');
+      },
+        () => this.toastService.openToast('error', 'Error while deleting dashboards...')
+      );
+  }
+
+  refreshListOfDashboardsToDeleteInLS() {
+    this.localStorage.refreshValueOfDashboardsListWeWantToDelete();
+  }
+
+  getDashboardsinLS() {
+    this.dashboardsListWeWantToDeleteSubscription = this.localStorage.listOfDashboardsWeWantToDelete$
+      .subscribe((list: string[]) => {
+        this.dashboardsToDeleteListToBeSentToBackend = list;
+      });
+  }
+
+  resetSelectedRows() {
+    console.log('before function');
+    this.localStorage.removeItem('dashboards-to-delete');
+    console.log('after function');
+    this.refreshListOfDashboardsToDeleteInLS();
+  }
+
   ngOnInit() {
     this.checkIfUserHasSearchedSomething();
-    this.getDashboards();
+    this.getDashboardsFromBackend();
+    this.getDashboardsinLS();
   }
 
   ngOnDestroy() {
     this.searchSub.unsubscribe();
     this.dashboardsSub.unsubscribe();
+    this.dashboardsListWeWantToDeleteSubscription.unsubscribe();
   }
 }

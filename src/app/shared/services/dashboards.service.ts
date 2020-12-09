@@ -17,7 +17,11 @@ export class DashboardsService {
     return this.http.post<DashboardModel>(`${environment.serverUrl}/create-dashboard`, data);
   }
 
-  getDashboards(): Observable<any> {
+  getDashboards(): Observable<DashboardModel[]> {
     return this.http.get<DashboardModel[]>(`${environment.serverUrl}/dashboards`);
+  }
+
+  deleteDashboards(data: {dashboards: string[]}): any {
+    return this.http.post(`${environment.serverUrl}/delete-dashboards`, data);
   }
 }
