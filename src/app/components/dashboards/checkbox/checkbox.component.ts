@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,8 +13,15 @@ export class CheckboxComponent implements OnChanges {
   @Input() unCheckCheckbox: boolean;
   @Output() checkboxClickedHighlightRow = new EventEmitter<boolean>();
 
+  constructor(
+    private router: Router,
+  ) {}
+
   toggleCheck(): void {
     this.checked = !this.checked;
+    if (window.location.pathname.includes('detail')) {
+      this.router.navigate(['/dashboards']);
+    }
     this.checkboxClickedHighlightRow.emit(this.checked);
   }
 
