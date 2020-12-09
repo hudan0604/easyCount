@@ -16,6 +16,6 @@
   </div>
 
   <div class="easy-button-div">
-    <easy-button buttonText='Cancel' routerLink='/' [buttonClass]="buttonCancelBackground"></easy-button>
-    <easy-button [buttonClass]="buttonValidateBackground" [disabled]='addPeopleForm.invalid' buttonText="Let's Go !" (click)='createNewDashboard(addPeopleForm.value)'></easy-button>
+    <button routerLink='/' class="cancel">Cancel</button>
+    <button class="validate" [disabled]='addPeopleForm.invalid' (click)='createNewDashboard(addPeopleForm.value)'>Let's Go !</button>
   </div>
