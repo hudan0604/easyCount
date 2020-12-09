@@ -1,4 +1,8 @@
-@import '../../shared/scss/themes/buttons.themes';
+$link-color: white;
+$link-hover-color:  rgba(26, 22, 22, 0.747);
+$body-font-thin: lato-thin;
+$body-font-regular: lato-regular;
+$body-font-bold: lato-bold;
 
 :host {
   height: 100%;
