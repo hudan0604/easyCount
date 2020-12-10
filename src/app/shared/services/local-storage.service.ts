@@ -34,7 +34,6 @@ export class LocalStorageService {
   }
 
   refreshValueOfDashboardsListWeWantToDelete(): void {
-    console.log('we are in LS, we want to actualize the list');
     // tslint:disable-next-line: max-line-length
     this.getValueParsed('dashboards-to-delete') == null ? this.listOfDashboardsWeWantToDelete.next([]) : this.listOfDashboardsWeWantToDelete.next(this.getValueParsed('dashboards-to-delete'));
   }
