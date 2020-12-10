@@ -3,6 +3,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -22,6 +23,7 @@ export class CreateDashboardComponent implements OnInit {
     private fb: FormBuilder,
     private dashboardsService: DashboardsService,
     private toastService: ToastService,
+    private router: Router
   ) {
    }
 
@@ -65,7 +67,10 @@ export class CreateDashboardComponent implements OnInit {
     formData.map((peopleNameArr) => people.push(peopleNameArr[1]));
     dataForBackend.people = people;
     this.dashboardsService.addNewDashboard(dataForBackend).subscribe(
-      (success) => this.toastService.openToast('success', 'Dashboard successfully created !'),
+      (success) => {
+        this.toastService.openToast('success', 'Dashboard successfully created !');
+        this.router.navigate(['/dashboards']);
+      },
       (error) => this.toastService.openToast('error', 'Error during dashboard creation')
     );
   }
