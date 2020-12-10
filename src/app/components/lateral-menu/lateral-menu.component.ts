@@ -11,7 +11,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
       // ...
       state('open', style({
         width: '200px',
-        backgroundColor: '#d5cfcc',
         height: '100%',
         visibility: 'visible'
       })),
