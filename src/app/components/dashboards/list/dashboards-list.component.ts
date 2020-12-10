@@ -77,7 +77,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @param activityName: dashboard name
+   * @param id: dashboard id
    * need it to construct a custom URL
    * and navigate to the dahsboards details component
    */
