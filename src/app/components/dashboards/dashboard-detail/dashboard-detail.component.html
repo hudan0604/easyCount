@@ -1,4 +1,14 @@
-<div @fadeIn class="dashboard-detail">
-  <p>dashboard-detail works!</p>
+<div class="header">
+  <div class="activityName">{{dashboard.activityName}}</div>
+</div>
+
+<div class="dashboard-detail">
+  <div>Creation date : {{dashboard.creationDate}}</div>
+  <div>
+    <div>People who participate to the activity:</div>
+    <div *ngFor='let personName of dashboard.people'>
+      {{personName}}
+    </div>
+  </div>
 </div>
 
