@@ -6,7 +6,7 @@
         <div class="header">People total</div>
         <div class="header">Creation date</div>
       </div>
-      <easy-row *ngFor='let dashboard of dashboards; index as i' [dashboard]='dashboard' [rowIndex]='i' [hideBackgroundSelectedRows]='hideBackgroundOfSelectedRow' (click)="openDetailComponent(dashboard._id); setRowIndex(i); hideBackgroundOfSelectedRows(); resetSelectedRows()">
+      <easy-row *ngFor='let dashboard of dashboardsFiltered; index as i' [dashboard]='dashboard' [rowIndex]='i' [hideBackgroundSelectedRows]='hideBackgroundOfSelectedRow' (click)="openDetailComponent(dashboard._id); setRowIndex(i); hideBackgroundOfSelectedRows(); resetSelectedRows()">
       </easy-row>
     </div>
   </div>

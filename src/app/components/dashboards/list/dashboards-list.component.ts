@@ -30,6 +30,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   dashboardsListWeWantToDeleteSubscription: Subscription;
   dashboardsToDeleteListToBeSentToBackend: string[] | null;
   deleteDashboardsSubscription: Subscription;
+  dashboardsFiltered: DashboardModel[] = [];
 
   constructor(
     private dashboardService: DashboardsService,
@@ -43,12 +44,12 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
 
   checkIfTheSearchMatchesDashboards(searchQuery: string) {
     this.isLoading = true;
-    this.dashboards = this.dashboards
+    this.dashboardsFiltered = this.dashboards
       .filter((eachDashboard: DashboardModel) => {
-        if (eachDashboard.activityName.includes(searchQuery)) {
+        if (eachDashboard.activityName.toLowerCase().includes(searchQuery)) {
           this.isLoading = false;
        }
-        return eachDashboard.activityName.includes(searchQuery);
+        return eachDashboard.activityName.toLowerCase().includes(searchQuery);
       });
     this.isLoading = false;
   }
@@ -58,7 +59,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
       .subscribe((value: string) => {
         // tslint:disable-next-line: max-line-length
         if (value) {
-          this.checkIfTheSearchMatchesDashboards(value);
+          this.checkIfTheSearchMatchesDashboards(value.toLowerCase());
         } else { this.getDashboardsFromBackend(); }
       });
   }
@@ -68,6 +69,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
     this.dashboardsSub = this.dashboardService.getDashboards()
       .subscribe((dashboards: DashboardModel[]) => {
         this.dashboards = dashboards;
+        this.dashboardsFiltered = dashboards;
         this.isLoading = false;
       },
         () => this.toastService.openToast('error', 'Error while getting dashboards from server ...')
