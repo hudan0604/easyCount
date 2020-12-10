@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LoadingComponent } from '../loading/loading.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -14,7 +15,6 @@ import { DashboardsListComponent } from './list/dashboards-list.component';
 import {
     NoDashboardSelectedComponent
 } from './no-dashboard-selected/no-dashboard-selected.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
 import { RowComponent } from './row/row.component';
 
 const DASHBOARDS_ROUTES: Routes = [
@@ -29,7 +29,7 @@ const DASHBOARDS_ROUTES: Routes = [
       }
       ,
       {
-        path: 'view/:activityName/detail',
+        path: 'view/:dashboardId',
         component: DashboardDetailComponent
       },
       {

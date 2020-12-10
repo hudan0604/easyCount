@@ -79,8 +79,8 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
    * need it to construct a custom URL
    * and navigate to the dahsboards details component
    */
-  openDetailComponent(activityName: string): void {
-    this.router.navigate([`view/${activityName}/detail`], { relativeTo: this.route });
+  openDetailComponent(id: string): void {
+    this.router.navigate([`view/${id}`], { relativeTo: this.route });
   }
 
   setRowIndex(index: number) {

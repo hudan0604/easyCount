@@ -19,7 +19,7 @@ export class CheckboxComponent implements OnChanges {
 
   toggleCheck(): void {
     this.checked = !this.checked;
-    if (window.location.pathname.includes('detail')) {
+    if (window.location.pathname.includes('view')) {
       this.router.navigate(['/dashboards']);
     }
     this.checkboxClickedHighlightRow.emit(this.checked);
