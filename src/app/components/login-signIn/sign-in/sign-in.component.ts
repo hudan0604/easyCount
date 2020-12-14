@@ -55,5 +55,4 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.initForm();
   }
-
 }
