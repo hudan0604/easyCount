@@ -14,20 +14,18 @@
 }
 
 .login-div {
-  width: 45%;
-  height: 60%;
+  width: 40%;
+  height: auto;
   background: #f8f5f5;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
 
   .login-title {
-    position: absolute;
     font-size: 1.4rem;
     display: flex;
     justify-content: center;
-    left: 50%;
-    right: 50%;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 
   form {
@@ -39,7 +37,17 @@
 
     .form-field {
       margin-bottom: 3rem;
-      width: 60%;
+      width: 100%;
+    }
+  }
+  .log-in-link {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 0 0;
+    color: rgb(12, 105, 245);
+
+    &:visited {
+      text-decoration: none;
     }
   }
 }

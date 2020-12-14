@@ -1,3 +1,4 @@
 <nav #nav id="navbar" [class.scrolledNav]="isScrolled">
-  <fa-icon [icon]='faMenu' class="clicked" [class.clicked-true]='status' (click)='toggleMenu()'></fa-icon><a id="logo" routerLink='/'>EasyCount</a>
+  <fa-icon [icon]='faMenu' class="menu-icon" [class.menu-icon-clicked]='status' (click)='toggleMenu()'></fa-icon><a id="logo" routerLink='/'>EasyCount</a>
+  <fa-icon class="logout-icon" [icon]='logOutIcon' (click)='logOut()'></fa-icon>
 </nav>

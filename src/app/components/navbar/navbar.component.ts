@@ -1,8 +1,10 @@
 import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/shared/services/menu.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faEllipsisV, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'easy-navbar',
@@ -12,12 +14,17 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent implements OnInit, OnDestroy {
 
   faMenu = faEllipsisV;
+  logOutIcon = faSignOutAlt;
   @ViewChild('nav', {static: false}) navBar: ElementRef<HTMLElement>;
 
   isScrolled = false;
   status = false;
   menuSub: Subscription;
-  constructor(private menuService: MenuService) {}
+  constructor(
+    private menuService: MenuService,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   @HostListener('window:scroll', ['$event'])
     handleScroll() {
@@ -27,6 +34,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   toggleMenu(): void {
     this.menuService.setLateralMenuStatus(!this.status);
+  }
+
+  logOut() {
+    this.userService.logOut();
+    this.router.navigate(['']);
   }
 
   ngOnInit() {
