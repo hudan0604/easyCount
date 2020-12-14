@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
-import { ManageDashboardComponent } from './components/manage-dashboard/manage-dashboard.component';
+import { LoginComponent } from './components/login-signIn/login/login.component';
+import { SignInComponent } from './components/login-signIn/sign-in/sign-in.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {
     SidenavMenuLinkComponent
@@ -24,10 +25,11 @@ import { ToastComponent } from './components/toast/toast.component';
     HomeComponent,
     CreateDashboardComponent,
     NavbarComponent,
-    ManageDashboardComponent,
     LateralMenuComponent,
     SidenavMenuLinkComponent,
     ToastComponent,
+    LoginComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

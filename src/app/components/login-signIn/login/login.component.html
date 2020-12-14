@@ -1,0 +1,15 @@
+<div class="login-div">
+  <div class="login-title">Login</div>
+    <form [formGroup]='loginForm'>
+      <div class="form-field">
+        <input type='text' formControlName='email' placeholder="Your mail address">
+        <div *ngIf="loginForm.get('email').hasError('required')">This field is required</div>
+        <div *ngIf="loginForm.get('email').hasError('invalid')">This is not a valid mail address</div>
+      </div>
+      <div class="form-field">
+        <input type='text' formControlName='password' placeholder="Password">
+      </div>
+      <button class="validate" (click)='logUser(loginForm.value)'>Go</button>
+    </form>
+    <a href='/sign-in'>Not user yet ? Sign in</a>
+</div>

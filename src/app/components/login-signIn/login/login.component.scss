@@ -1,0 +1,45 @@
+@import '../../../shared/scss/themes/buttons.themes';
+@import '../../../shared/scss/input.partial.scss';
+
+:host {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #373333;
+}
+
+.login-div {
+  width: 45%;
+  height: 60%;
+  background: #f8f5f5;
+  display: flex;
+  flex-direction: column;
+
+  .login-title {
+    position: absolute;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    right: 50%;
+    margin-top: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .form-field {
+      margin-bottom: 3rem;
+      width: 60%;
+    }
+  }
+}

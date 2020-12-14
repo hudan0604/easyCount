@@ -1,0 +1,26 @@
+<div class="sign-in-layout">
+  <div class="sign-in-title">Sign in</div>
+  <form [formGroup]='signInForm'>
+    <div class="form-field">
+      <input type='text' placeholder="First name" formControlName='firstName'>
+    </div>
+    <div class="form-field">
+      <input type='text' placeholder="Last name" formControlName='lastName'>
+    </div>
+    <div class="form-field">
+      <input type='text' placeholder="Mail address" formControlName='email'>
+    </div>
+    <div class="form-field">
+      <input type='password' placeholder="Password" formControlName='password'>
+      <div *ngIf="signInForm.get('password').hasError('pattern')">
+        The password must contain at least one uppercase letter,<br/>
+        one lowercase letter, a number, a special character, and<br/>
+        be between 8 and 32 digits
+      </div>
+    </div>
+    <div>
+      <button class="validate" (click)='signUserIn(signInForm.value)' [disabled]='signInForm.invalid'>Sign in</button>
+      <button class="cancel" routerLink='/login'>Cancel</button>
+    </div>
+  </form>
+</div>
