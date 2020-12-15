@@ -13,6 +13,7 @@ button {
     &:hover {
       color:  hsl(240, 75%, 58%);
       background: white;
+      border: 1px solid grey;
     }
   }
 
@@ -33,6 +34,7 @@ button {
     &:hover {
       background: white;
       color: #e42b2b;
+      border: 1px solid rgb(231, 138, 138);
     }
   }
 }
