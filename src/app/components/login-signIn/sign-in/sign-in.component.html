@@ -12,11 +12,6 @@
     </div>
     <div class="form-field">
       <input type='password' placeholder="Password" formControlName='password'>
-      <div *ngIf="signInForm.get('password').hasError('pattern')">
-        The password must contain at least one uppercase letter,<br/>
-        one lowercase letter, a number, a special character, and<br/>
-        be between 8 and 32 digits
-      </div>
     </div>
     <div>
       <button class="validate" (click)='signUserIn(signInForm.value)' [disabled]='signInForm.invalid'>Sign in</button>
