@@ -21,11 +21,11 @@ export class UserService {
   ) { }
 
   logUser(data: { email: string; password: string}): Observable<any> {
-    return this.http.post(`${environment.serverUrl}/log-in`, data);
+    return this.http.post(`${environment.serverUrl}/users/log-in`, data, { headers: { skip: "true" } });
   }
 
   signUserIn(data: UserModel): Observable<any> {
-    return this.http.post(`${environment.serverUrl}/create-user`, data)
+    return this.http.post(`${environment.serverUrl}/create-user`, data, { headers: { skip: "true" } });
   }
 
   setUserasLoggedIn(user: UserModel) {
@@ -33,9 +33,8 @@ export class UserService {
     this.localStorageService.setItemStringified('user', user);
   }
 
-  logOut() {
-    this.userLoggedIn.next(null);
-    this.localStorageService.removeItem('user');
+  logout(user: UserModel) {
+    return this.http.post(`${environment.serverUrl}/users/logout`, user);
   }
 
   isUserLoggedIn(): boolean {
