@@ -1,5 +1,7 @@
 import { Subscription } from 'rxjs';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { MenuService } from 'src/app/shared/services/menu.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -20,10 +22,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isScrolled = false;
   status = false;
   menuSub: Subscription;
+  userLogoutSubscription: Subscription;
   constructor(
     private menuService: MenuService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService,
+    private toastService: ToastService
   ) { }
 
   @HostListener('window:scroll', ['$event'])
@@ -37,8 +42,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.userService.logOut();
-    this.router.navigate(['']);
+    this.userLogoutSubscription = this.userService.logout(this.localStorageService.getValueParsed('user'))
+      .subscribe(() => {
+        this.userService.userLoggedIn.next(null);
+        this.localStorageService.removeItem('user');
+        this.toastService.openToast('success', 'You logged out successfully')
+        this.router.navigate(['']);
+      },
+      () => this.toastService.openToast('error', 'Error while attempting to disconnect'));
   }
 
   ngOnInit() {
@@ -49,5 +60,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.menuSub.unsubscribe();
+    this.userLogoutSubscription.unsubscribe();
   }
 }
