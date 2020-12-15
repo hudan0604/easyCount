@@ -2,7 +2,7 @@ import { UserModel } from 'src/app/shared/models/users.models';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   mailAddressCtrl: FormControl;
@@ -39,13 +39,19 @@ export class LoginComponent implements OnInit {
     this.logUserSubscription = this.userService.logUser(formValue)
       .subscribe((user: UserModel) => {
         this.userService.setUserasLoggedIn(user);
+        this.toastService.openToast('success', 'You logged in successfully !');
         this.router.navigate(['/home']);
       },
-        () => this.toastService.openToast('error', 'Unknow user !')
+        (e) => {
+          this.toastService.openToast('error', 'Unknow user !');
+        }
       );
   }
 
   ngOnInit() {
     this.initForm();
+  }
+  ngOnDestroy() {
+    this.logUserSubscription.unsubscribe();
   }
 }
