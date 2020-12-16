@@ -72,6 +72,10 @@ export class RowComponent implements OnInit, OnChanges, OnDestroy {
     this.localStorage.refreshValueOfDashboardsListWeWantToDelete();
   }
 
+  isUserDashboardCreator(): boolean {
+    return this.dashboard.dashboardCreator === this.localStorage.getValueParsed('user')._id ? true : false;
+  }
+
   ngOnInit() {
     this.rowSelectedSubscription = this.rowSelectedService.dashboardIndex$
       .subscribe((index: number) => {
