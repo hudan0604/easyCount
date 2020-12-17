@@ -48,7 +48,10 @@ export class SignInComponent implements OnInit {
           this.toastService.openToast('success', 'You signed in successfully !');
           this.router.navigate(['/login']);
         },
-      () => this.toastService.openToast('error', 'Error while attempting to sign in !')
+        (error) => {
+          this.toastService.openToast('error', error.error.reason);
+        }
+
     );
   }
 
