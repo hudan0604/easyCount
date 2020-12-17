@@ -43,8 +43,9 @@
   .log-in-link {
     display: flex;
     justify-content: center;
-    margin: 2rem 0 0 0;
-    color: rgb(12, 105, 245);
+    margin: 2rem auto 0;
+    color: #0c69f5;
+    width: max-content;
 
     &:visited {
       text-decoration: none;
