@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   toggleToast(): void {
     setTimeout(() => {
       this.toastService.closeToast();
-      }, 8000);
+      }, 4000);
     }
 
   watchToastStatus(): void {
