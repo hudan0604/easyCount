@@ -1,0 +1,36 @@
+:host {
+  background: whitesmoke;
+  position: absolute;
+  right: 0;
+  width: 15rem;
+  height: 20rem;
+  top: 4rem;
+  padding: 1rem;
+  opacity: 0;
+}
+
+.profile-wraper {
+  height: 100%;
+
+  .user-name {
+    font-size: 1.3rem;
+  }
+
+  .links-wraper {
+    position: absolute;
+    bottom: 0;
+
+    .warning:hover {
+      color: red;
+    }
+
+    .profile-link {
+      margin-bottom: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

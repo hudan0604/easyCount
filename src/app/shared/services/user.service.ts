@@ -15,6 +15,9 @@ export class UserService {
   userLoggedIn = new BehaviorSubject<UserModel>(this.localStorageService.getValueParsed('user'));
   userLoggedIn$ = this.userLoggedIn.asObservable();
 
+  openUserProfileComponent = new BehaviorSubject<boolean>(false);
+  openUserProfileComponent$ = this.openUserProfileComponent.asObservable();
+
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
@@ -29,8 +32,8 @@ export class UserService {
   }
 
   setUserasLoggedIn(user: UserModel) {
-    this.userLoggedIn.next(user);
     this.localStorageService.setItemStringified('user', user);
+    this.userLoggedIn.next(user);
   }
 
   logout(user: UserModel) {
@@ -39,5 +42,9 @@ export class UserService {
 
   isUserLoggedIn(): boolean {
     return this.localStorageService.getValueParsed('user') ? true : false;
+  }
+
+  deleteUserAccount(): Observable<UserModel> {
+    return this.http.delete<UserModel>(`${environment.serverUrl}/users/me`);
   }
 }

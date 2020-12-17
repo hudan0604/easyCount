@@ -1,6 +1,7 @@
-<easy-navbar *ngIf='userLoggedIn'></easy-navbar>
+<easy-navbar></easy-navbar>
 <easy-lateral-menu></easy-lateral-menu>
 <easy-toast [config]='config'></easy-toast>
+<easy-user-profile></easy-user-profile>
 
 <div class="components-wrapper" (click)='closeLateralMenu()'>
   <router-outlet></router-outlet>

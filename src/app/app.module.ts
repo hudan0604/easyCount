@@ -19,6 +19,7 @@ import {
 } from './components/sidenav-menu-link/sidenav-menu-link.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     SidenavMenuLinkComponent,
     ToastComponent,
     LoginComponent,
-    SignInComponent
+    SignInComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

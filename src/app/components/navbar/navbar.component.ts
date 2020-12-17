@@ -1,12 +1,10 @@
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { UserModel } from 'src/app/shared/models/users.models';
 import { MenuService } from 'src/app/shared/services/menu.service';
-import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { faEllipsisV, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'easy-navbar',
@@ -16,19 +14,19 @@ import { faEllipsisV, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent implements OnInit, OnDestroy {
 
   faMenu = faEllipsisV;
-  logOutIcon = faSignOutAlt;
+  profileIcon = faUserCircle;
   @ViewChild('nav', {static: false}) navBar: ElementRef<HTMLElement>;
 
   isScrolled = false;
   status = false;
   menuSub: Subscription;
-  userLogoutSubscription: Subscription;
+  openProfile = false;
+  userLoggedInSubscription: Subscription;
+  userLoggedIn = false;
+
   constructor(
     private menuService: MenuService,
     private userService: UserService,
-    private router: Router,
-    private localStorageService: LocalStorageService,
-    private toastService: ToastService
   ) { }
 
   @HostListener('window:scroll', ['$event'])
@@ -41,25 +39,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.menuService.setLateralMenuStatus(!this.status);
   }
 
-  logOut() {
-    this.userLogoutSubscription = this.userService.logout(this.localStorageService.getValueParsed('user'))
-      .subscribe(() => {
-        this.userService.userLoggedIn.next(null);
-        this.localStorageService.removeItem('user');
-        this.toastService.openToast('success', 'You logged out successfully')
-        this.router.navigate(['']);
-      },
-      () => this.toastService.openToast('error', 'Error while attempting to disconnect'));
+  openUserProfile() {
+    this.openProfile = !this.openProfile;
+    this.userService.openUserProfileComponent.next(this.openProfile);
   }
 
   ngOnInit() {
     this.menuSub = this.menuService.status.subscribe((status: boolean) => {
       this.status = status;
     });
+    this.userLoggedInSubscription = this.userService.userLoggedIn$
+    .subscribe((user: UserModel) => this.userLoggedIn = user ? true : false)
   }
 
   ngOnDestroy() {
     this.menuSub.unsubscribe();
-    this.userLogoutSubscription.unsubscribe();
   }
 }

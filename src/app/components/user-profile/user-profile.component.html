@@ -1,0 +1,7 @@
+<div class="profile-wraper">
+  <div class='user-name'>{{user.firstName}} {{user.lastName}}</div>
+  <div class="links-wraper">
+    <div class="warning profile-link" (click)='deleteUserAccount()'>Delete my account</div>
+    <div class="profile-link" (click)='logout(); closeUserProfilePanel()'>Log out</div>
+  </div>
+</div>
