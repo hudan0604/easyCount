@@ -1,4 +1,5 @@
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,8 @@ export class CreateDashboardComponent implements OnInit {
     private fb: FormBuilder,
     private dashboardsService: DashboardsService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private localStorage: LocalStorageService
   ) {
    }
 
@@ -60,11 +62,7 @@ export class CreateDashboardComponent implements OnInit {
     dataForBackend.activityName = formData.activityName;
     dataForBackend.creationDate = formData.creationDate;
     const people: string[] = [];
-    formData = Object.entries(formData)
-      .filter(
-        (key) => key[0] !== 'creationDate' && key[0] !== 'activityName'
-    );
-    formData.map((peopleNameArr) => people.push(peopleNameArr[1]));
+    people.push(this.localStorage.getValueParsed('user')._id);
     dataForBackend.people = people;
     this.dashboardsService.addNewDashboard(dataForBackend).subscribe(
       (success) => {
