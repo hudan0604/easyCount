@@ -1,4 +1,4 @@
 <nav *ngIf='userLoggedIn' #nav id="navbar" [class.scrolledNav]="isScrolled">
   <fa-icon [icon]='faMenu' class="menu-icon" [class.menu-icon-clicked]='status' (click)='toggleMenu()'></fa-icon><a id="logo" routerLink='/'>EasyCount</a>
-  <fa-icon class="logout-icon" [icon]='profileIcon' (click)='openUserProfile()'></fa-icon>
+  <fa-icon class="profile-icon" [icon]='profileIcon' (click)='openUserProfile()'></fa-icon>
 </nav>
