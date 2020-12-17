@@ -9,7 +9,7 @@
       <div class="form-field">
         <input type='password' formControlName='password' placeholder="Password">
       </div>
-      <button class="validate" (click)='logUser(loginForm.value)'>Go</button>
+      <button class="validate" [disabled]='loginForm.invalid' (click)='logUser(loginForm.value)'>Go</button>
     </form>
     <a href='/sign-in' class="log-in-link">Not user yet ? Sign in</a>
 </div>

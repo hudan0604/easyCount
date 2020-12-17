@@ -6,6 +6,12 @@ button {
   font-size: 0.9rem;
   cursor: pointer;
 
+  &:disabled {
+    background: grey !important;
+    opacity: 0.3;
+  }
+
+
   &.validate {
     background: hsl(240, 75%, 58%);
     color: white;
@@ -14,6 +20,10 @@ button {
       color:  hsl(240, 75%, 58%);
       background: white;
       border: 1px solid grey;
+    }
+
+    &:disabled:hover{
+      color: white;
     }
   }
 
