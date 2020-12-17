@@ -36,6 +36,10 @@ export class UserService {
     this.userLoggedIn.next(user);
   }
 
+  getAuthUser(): Observable<UserModel> {
+    return this.http.get<UserModel>(`${environment.serverUrl}/users/me`);
+  }
+
   logout(user: UserModel) {
     return this.http.post(`${environment.serverUrl}/users/logout`, user);
   }

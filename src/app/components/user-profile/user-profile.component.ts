@@ -31,6 +31,7 @@ export class UserProfileComponent implements OnInit {
   userProfileOpenClosedSubscription: Subscription;
   userLogoutSubscription: Subscription;
   openProfile = false;
+  userProfileSubscription: Subscription;
 
   @HostBinding('@fade')
   get fade(): string {
@@ -73,14 +74,19 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
+  getAuthUser() {
+    this.userProfileSubscription = this.userService.getAuthUser()
+      .subscribe((user: UserModel) => this.user = user);
+  }
+
   ngOnInit() {
-    this.user = this.localStorage.getValueParsed('user');
+    this.getAuthUser();
     this.watchUserProfileOpenClosedStatus();
   }
 
   ngOnDestroy() {
     this.userProfileOpenClosedSubscription.unsubscribe();
     this.userLogoutSubscription.unsubscribe();
+    this.userProfileSubscription.unsubscribe();
   }
-
 }
