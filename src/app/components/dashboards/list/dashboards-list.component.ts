@@ -19,7 +19,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   dashboards: DashboardModel[] = [{
     activityName: '',
     creationDate: '',
-    people: ['']
+    people: [{firstName: '', lastName: '', email: ''}]
   }];
   searchSub: Subscription;
   isLoading = false;

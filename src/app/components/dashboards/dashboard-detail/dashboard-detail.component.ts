@@ -15,7 +15,11 @@ export class DashboardDetailComponent implements OnInit, OnDestroy {
   dashboard: DashboardModel = {
     activityName: '',
     creationDate: '',
-    people: []
+    people: [{
+      firstName: '',
+      lastName: '',
+      email: ''
+    }]
   };
   dashboardId: string;
 

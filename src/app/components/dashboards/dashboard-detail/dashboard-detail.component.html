@@ -6,8 +6,8 @@
   <div>Creation date : {{dashboard.creationDate}}</div>
   <div>
     <div>People who participate to the activity:</div>
-    <div *ngFor='let personName of dashboard.people'>
-      {{personName}}
+    <div *ngFor='let person of dashboard.people'>
+      {{person.firstName}} {{person.lastName}}
     </div>
   </div>
   <div class="manage-button-div">
