@@ -1,10 +1,9 @@
-import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/shared/models/users.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,16 +12,14 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
   firstNameCtrl: FormControl;
   lastNameCtrl: FormControl;
   mailCtrl: FormControl;
   passwordCtrl: FormControl;
-  signinUserSubscription: any;
   dashboardId: string;
-  addUserToDashboardSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +44,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   signUserIn(formValue: UserModel) {
-    this.signinUserSubscription = this.userService.signUserIn(formValue)
+    this.userService.signUserIn(formValue)
       .subscribe(
         (user: UserModel) => {
           // user has been invited to join a dashboard
@@ -67,7 +64,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   addUserToDashboard(dashboardId: string, userId: string) {
-    this.addUserToDashboardSubscription = this.dashboardService.addUserToDashboard(dashboardId, userId)
+    this.dashboardService.addUserToDashboard(dashboardId, userId)
       .subscribe(() => {
         this.toastService.openToast('success', 'You successfully signed in and joined the dashboard of your friend !')
         this.navigateToLoginPage();
@@ -84,9 +81,5 @@ export class SignInComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initForm();
     this.dashboardId = this.router.url.split('/')[2];
-  }
-
-  ngOnDestroy() {
-    this.addUserToDashboardSubscription.unsubscribe();
   }
 }
