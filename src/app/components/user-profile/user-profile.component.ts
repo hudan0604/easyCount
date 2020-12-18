@@ -47,15 +47,19 @@ export class UserProfileComponent implements OnInit {
 
   watchUserProfileOpenClosedStatus() {
     this.userProfileOpenClosedSubscription = this.userService.openUserProfileComponent$
-      .subscribe((status: boolean) => this.openProfile = status);
+      .subscribe((status: boolean) => {
+        this.openProfile = status;
+        status ? this.getAuthUser() : this.user = {firstName: '', lastName: ''};
+      });
   }
 
   logout() {
-    this.userLogoutSubscription = this.userService.logout(this.localStorage.getValueParsed('user'))
+    this.userLogoutSubscription = this.userService.logout(this.user)
       .subscribe(() => {
         this.userService.userLoggedIn.next(null);
         this.localStorage.removeItem('user');
-        this.toastService.openToast('success', 'You logged out successfully')
+        this.toastService.openToast('success', 'You logged out successfully');
+        this.closeUserProfilePanel();
         this.router.navigate(['']);
       },
       () => this.toastService.openToast('error', 'Error while attempting to disconnect'));
@@ -68,7 +72,7 @@ export class UserProfileComponent implements OnInit {
   deleteUserAccount() {
     return this.userService.deleteUserAccount()
       .subscribe(() => {
-        this.localStorage.removeItem('user');
+        this.localStorage.clearLocalStorage();
         this.router.navigate(['']);
         this.toastService.openToast('success', 'Your account has been deleted. Come back soon :-)')
       });
@@ -76,11 +80,13 @@ export class UserProfileComponent implements OnInit {
 
   getAuthUser() {
     this.userProfileSubscription = this.userService.getAuthUser()
-      .subscribe((user: UserModel) => this.user = user);
+      .subscribe(
+        (user: UserModel) => {
+        this.user = user;
+        });
   }
 
   ngOnInit() {
-    this.getAuthUser();
     this.watchUserProfileOpenClosedStatus();
   }
 
