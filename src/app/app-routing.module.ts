@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'home'
   },
   {
     path: '',
@@ -21,6 +21,10 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'login/:dashboardId',
         component: LoginComponent,
       },
       {

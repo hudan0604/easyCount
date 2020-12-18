@@ -1,4 +1,5 @@
 import { UserModel } from 'src/app/shared/models/users.models';
+import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -18,12 +19,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   passwordCtrl: FormControl;
   showImage = false;
   logUserSubscription: any;
+  dashboardId: string;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private toastService: ToastService,
     private router: Router,
+    private dashboardService: DashboardsService
   ) { }
 
   initForm() {
@@ -41,6 +44,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userService.setUserasLoggedIn(user);
         this.toastService.openToast('success', 'You logged in successfully !');
         this.router.navigate(['/home']);
+        if (this.dashboardId) {
+          this.addUserToDashboard(this.dashboardId, user._id);
+        }
       },
         (e) => {
           this.toastService.openToast('error', 'Unknow user !');
@@ -48,8 +54,19 @@ export class LoginComponent implements OnInit, OnDestroy {
       );
   }
 
+  addUserToDashboard(dashboardId: string, userId: string) {
+    this.dashboardService.addUserToDashboard(dashboardId, userId)
+      .subscribe(() => {
+        this.toastService.openToast('success', 'You successfully joined the dashboard of your friend !')
+      },
+        (error) => {
+      this.toastService.openToast('error', error.status === 404 ? "The dashboard you're tryring to join was not found..." : error)
+    });
+  }
+
   ngOnInit() {
     this.initForm();
+    this.dashboardId = this.router.url.split('/')[2];
   }
   ngOnDestroy() {
     this.logUserSubscription.unsubscribe();

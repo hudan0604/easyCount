@@ -22,8 +22,6 @@ export class AppComponent implements OnInit, OnDestroy {
     toastStatus: ''
   };
   openToast = false;
-  userLoggedInSubscription: Subscription;
-  userLoggedIn = false;
 
   constructor(
     private menuService: MenuService,
@@ -67,6 +65,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.lateralMenuSub.unsubscribe();
     this.toastSub.unsubscribe();
-    this.userLoggedInSubscription.unsubscribe();
   }
 }

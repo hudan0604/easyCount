@@ -60,7 +60,7 @@ export class UserProfileComponent implements OnInit {
         this.localStorage.removeItem('user');
         this.toastService.openToast('success', 'You logged out successfully');
         this.closeUserProfilePanel();
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       },
       () => this.toastService.openToast('error', 'Error while attempting to disconnect'));
   }
@@ -73,7 +73,7 @@ export class UserProfileComponent implements OnInit {
     return this.userService.deleteUserAccount()
       .subscribe(() => {
         this.localStorage.clearLocalStorage();
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
         this.toastService.openToast('success', 'Your account has been deleted. Come back soon :-)')
       });
   }

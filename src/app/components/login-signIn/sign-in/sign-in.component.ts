@@ -19,14 +19,12 @@ export class SignInComponent implements OnInit {
   lastNameCtrl: FormControl;
   mailCtrl: FormControl;
   passwordCtrl: FormControl;
-  dashboardId: string;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private toastService: ToastService,
     private router: Router,
-    private dashboardService: DashboardsService
   ) { }
 
   initForm() {
@@ -46,16 +44,10 @@ export class SignInComponent implements OnInit {
   signUserIn(formValue: UserModel) {
     this.userService.signUserIn(formValue)
       .subscribe(
-        (user: UserModel) => {
-          // user has been invited to join a dashboard
-          if (this.dashboardId) {
-            this.addUserToDashboard(this.dashboardId, user._id);
-          } else {
-              // do sign-in actions as usual : toast and redirection to login page
-              this.toastService.openToast('success', 'You signed in successfully !');
-              this.navigateToLoginPage();
-          }
-        },
+        () => {
+            this.toastService.openToast('success', 'You signed in successfully !');
+            this.router.navigate(['']);
+          },
         (error) => {
           error
           this.toastService.openToast('error', error.status === 409 ? error.error.reason : 'Error while signin in');
@@ -63,23 +55,7 @@ export class SignInComponent implements OnInit {
     );
   }
 
-  addUserToDashboard(dashboardId: string, userId: string) {
-    this.dashboardService.addUserToDashboard(dashboardId, userId)
-      .subscribe(() => {
-        this.toastService.openToast('success', 'You successfully signed in and joined the dashboard of your friend !')
-        this.navigateToLoginPage();
-      },
-        (error) => {
-      this.toastService.openToast('error', error.status === 404 ? "The dashboard you're tryring to join was not found..." : error)
-    });
-  }
-
-  navigateToLoginPage() {
-    this.router.navigate(['/login']);
-  }
-
   ngOnInit() {
     this.initForm();
-    this.dashboardId = this.router.url.split('/')[2];
   }
 }
