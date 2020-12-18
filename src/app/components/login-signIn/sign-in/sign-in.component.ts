@@ -1,8 +1,10 @@
+import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/shared/models/users.models';
+import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
 
   signInForm: FormGroup;
   firstNameCtrl: FormControl;
@@ -19,12 +21,15 @@ export class SignInComponent implements OnInit {
   mailCtrl: FormControl;
   passwordCtrl: FormControl;
   signinUserSubscription: any;
+  dashboardId: string;
+  addUserToDashboardSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private dashboardService: DashboardsService
   ) { }
 
   initForm() {
@@ -44,18 +49,44 @@ export class SignInComponent implements OnInit {
   signUserIn(formValue: UserModel) {
     this.signinUserSubscription = this.userService.signUserIn(formValue)
       .subscribe(
-        () => {
-          this.toastService.openToast('success', 'You signed in successfully !');
-          this.router.navigate(['/login']);
+        (user: UserModel) => {
+          // user has been invited to join a dashboard
+          if (this.dashboardId) {
+            this.addUserToDashboard(this.dashboardId, user._id);
+          } else {
+              // do sign-in actions as usual : toast and redirection to login page
+              this.toastService.openToast('success', 'You signed in successfully !');
+              this.navigateToLoginPage();
+          }
         },
         (error) => {
-          this.toastService.openToast('error', error.error.reason);
+          error
+          this.toastService.openToast('error', error.status === 409 ? error.error.reason : 'Error while signin in');
         }
-
     );
+  }
+
+  addUserToDashboard(dashboardId: string, userId: string) {
+    this.addUserToDashboardSubscription = this.dashboardService.addUserToDashboard(dashboardId, userId)
+      .subscribe(() => {
+        this.toastService.openToast('success', 'You successfully signed in and joined the dashboard of your friend !')
+        this.navigateToLoginPage();
+      },
+        (error) => {
+      this.toastService.openToast('error', error.status === 404 ? "The dashboard you're tryring to join was not found..." : error)
+    });
+  }
+
+  navigateToLoginPage() {
+    this.router.navigate(['/login']);
   }
 
   ngOnInit() {
     this.initForm();
+    this.dashboardId = this.router.url.split('/')[2];
+  }
+
+  ngOnDestroy() {
+    this.addUserToDashboardSubscription.unsubscribe();
   }
 }

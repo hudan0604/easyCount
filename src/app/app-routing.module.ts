@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    // prevent from declaring the guard one each component
+    // prevent from declaring the guard on each component
     canActivate: [NotLoggedInGuard],
     children: [
       {
@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'sign-in',
         component: SignInComponent
+      },
+      {
+        path: 'sign-in/:dashboardId',
+        component: SignInComponent,
       },
     ]
   },

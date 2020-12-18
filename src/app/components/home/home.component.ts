@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.dashboardsSubscription = this.dashboardsService.getDashboards()
+    this.dashboardsSubscription = this.dashboardsService.getCreatedDashboards()
       .subscribe((dashboards: DashboardModel[]) => dashboards.length ? this.alreadyDashboards = true : this.firstDashboard = true);
   }
 

@@ -4,6 +4,7 @@
 
 <div class="dashboard-detail">
   <div>Creation date : {{dashboard.creationDate}}</div>
+  <div>Dashboard creator : {{dashboard.dashboardCreator.firstName}} {{dashboard.dashboardCreator.lastName}}</div>
   <div>
     <div>People who participate to the activity:</div>
     <div *ngFor='let person of dashboard.people'>
