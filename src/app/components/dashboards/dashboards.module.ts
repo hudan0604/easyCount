@@ -1,3 +1,5 @@
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -6,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LoadingComponent } from '../loading/loading.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -49,8 +50,7 @@ const DASHBOARDS_ROUTES: Routes = [
     DashboardDetailComponent,
     NoDashboardSelectedComponent,
     LoadingComponent,
-    CheckboxComponent,
-    RowComponent
+    RowComponent,
   ],
   imports: [
     CommonModule,
@@ -58,7 +58,8 @@ const DASHBOARDS_ROUTES: Routes = [
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ]
 })
 export class DashboardsModule {

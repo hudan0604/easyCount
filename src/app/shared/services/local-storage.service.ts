@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
-  listOfDashboardsWeWantToDelete = new BehaviorSubject<string[]>([]);
-  listOfDashboardsWeWantToDelete$ = this.listOfDashboardsWeWantToDelete.asObservable();
+  listToHandle = new BehaviorSubject<string[]>([]);
+  listToHandle$ = this.listToHandle.asObservable();
   constructor() { }
 
   get(key: string): string {
@@ -33,9 +33,10 @@ export class LocalStorageService {
     window.localStorage.setItem(key, JSON.stringify(value));
   }
 
-  refreshValueOfDashboardsListWeWantToDelete(): void {
+  refreshValueOfListToHandle(): void {
     // tslint:disable-next-line: max-line-length
-    this.getValueParsed('dashboards-to-delete') == null ? this.listOfDashboardsWeWantToDelete.next([]) : this.listOfDashboardsWeWantToDelete.next(this.getValueParsed('dashboards-to-delete'));
+    // this.getValueParsed('dashboards-to-delete') == null ? this.listOfDashboardsWeWantToDelete.next([]) : this.listOfDashboardsWeWantToDelete.next(this.getValueParsed('dashboards-to-delete'));
+    this.getValueParsed('ids-to-handle') == null ? this.listToHandle.next([]) : this.listToHandle.next(this.getValueParsed('ids-to-handle'));
   }
 
   removeItem(localStorageItem: string) {

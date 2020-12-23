@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import {
-    ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment,
-    UrlTree
+    ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router,
+    RouterStateSnapshot, UrlSegment, UrlTree
 } from '@angular/router';
 
 import { UserService } from '../services/user.service';
@@ -32,6 +32,5 @@ export class LoggedInGuard implements CanActivate, CanLoad {
       this.router.navigate(['/login']);
       return false;
     }
-
   }
 }

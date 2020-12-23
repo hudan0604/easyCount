@@ -40,6 +40,10 @@ export class UserService {
     return this.http.get<UserModel>(`${environment.serverUrl}/users/me`);
   }
 
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${environment.serverUrl}/users`);
+  }
+
   logout(user: UserModel) {
     return this.http.post(`${environment.serverUrl}/users/logout`, user);
   }

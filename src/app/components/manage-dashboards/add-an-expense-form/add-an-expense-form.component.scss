@@ -1,0 +1,51 @@
+@import '../../../shared/scss/input.partial.scss';
+@import '../../../shared/scss/themes/buttons.themes';
+
+:host {
+  flex: 0.4;
+  background: #e5e4e4cf;
+  padding: 0 1rem;
+  display: flex;
+}
+.form-wraper {
+  flex: 1;
+
+  form {
+    height: 100%;
+    position: relative;
+
+    .form-inputs {
+      line-height: 3.4rem;
+    }
+
+    .select-users-wraper {
+      margin-top: 1.2rem;
+
+      .select-users {
+        border: 1px solid grey;
+        background: white;
+        padding: 4px 0 4px 4px;
+        border-radius: 3px;
+      }
+
+      .users-div {
+        border: 1px solid;
+        background: #f4f0f0;
+
+        .user-row {
+          display: flex;
+          border-bottom: 1px solid;
+          padding: 6px 0;
+
+          &:first-child {
+            border-top: none;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}

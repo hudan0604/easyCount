@@ -34,7 +34,6 @@ export class DashboardsService {
   }
 
   addUserToDashboard(dashboardId: string, userId: string): Observable<any> {
-    console.log('url sent to back : ', `${environment.serverUrl}/add-user-to-dashboard/${dashboardId}`, {userId});
     return this.http.patch(`${environment.serverUrl}/add-user-to-dashboard/${dashboardId}`, { userId }, { headers: { skip: "true" } });
   }
 }

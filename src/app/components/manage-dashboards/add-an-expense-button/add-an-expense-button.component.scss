@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0.4;
+  background: #e5e4e4cf;
+}
+
+.wraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 3rem;
+  cursor: pointer;
+
+  fa-icon {
+    font-size: 4rem;
+    color: #4594c6;
+  }
+
+  .desc {
+    font-size: 1.8rem;
+  }
+}

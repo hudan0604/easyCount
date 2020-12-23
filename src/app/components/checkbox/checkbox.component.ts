@@ -11,7 +11,7 @@ export class CheckboxComponent implements OnChanges {
   checked = false;
   check = faCheck;
   @Input() unCheckCheckbox: boolean;
-  @Output() checkboxClickedHighlightRow = new EventEmitter<boolean>();
+  @Output() checkboxClicked = new EventEmitter<boolean>();
 
   constructor(
     private router: Router,
@@ -22,7 +22,7 @@ export class CheckboxComponent implements OnChanges {
     if (window.location.pathname.includes('view')) {
       this.router.navigate(['/dashboards']);
     }
-    this.checkboxClickedHighlightRow.emit(this.checked);
+    this.checkboxClicked.emit(this.checked);
   }
 
   ngOnChanges(changes: SimpleChanges) {

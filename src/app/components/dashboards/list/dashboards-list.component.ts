@@ -94,7 +94,7 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   deleteSelectedDashboards() {
-    const list = this.localStorage.getValueParsed('dashboards-to-delete');
+    const list = this.localStorage.getValueParsed('ids-to-handle');
     const dataForBackend = {
       dashboards: list
     };
@@ -109,18 +109,18 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
   }
 
   refreshListOfDashboardsToDeleteInLS() {
-    this.localStorage.refreshValueOfDashboardsListWeWantToDelete();
+    this.localStorage.refreshValueOfListToHandle();
   }
 
   getDashboardsinLS() {
-    this.dashboardsListWeWantToDeleteSubscription = this.localStorage.listOfDashboardsWeWantToDelete$
+    this.dashboardsListWeWantToDeleteSubscription = this.localStorage.listToHandle$
       .subscribe((list: string[]) => {
         this.dashboardsToDeleteListToBeSentToBackend = list;
       });
   }
 
   resetSelectedRows() {
-    this.localStorage.removeItem('dashboards-to-delete');
+    this.localStorage.removeItem('ids-to-handle');
     this.refreshListOfDashboardsToDeleteInLS();
   }
 
@@ -134,5 +134,6 @@ export class DashboardsListComponent implements OnInit, OnDestroy {
     this.searchSub.unsubscribe();
     this.dashboardsSub.unsubscribe();
     this.dashboardsListWeWantToDeleteSubscription.unsubscribe();
+    this.localStorage.removeItem('ids-to-handle');
   }
 }

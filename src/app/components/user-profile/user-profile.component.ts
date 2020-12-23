@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
     this.userLogoutSubscription = this.userService.logout(this.user)
       .subscribe(() => {
         this.userService.userLoggedIn.next(null);
-        this.localStorage.removeItem('user');
+        this.localStorage.clearLocalStorage();
         this.toastService.openToast('success', 'You logged out successfully');
         this.closeUserProfilePanel();
         this.router.navigate(['/login']);

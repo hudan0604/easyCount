@@ -1,0 +1,20 @@
+<div class="form-wraper">
+  <form [formGroup]='addExpenseForm'>
+    <div class="form-inputs">
+      <input type="text" placeholder="Expense title" formControlName='expenseName'>
+      <input type='date' placeholder='Expense date' formControlName='creationDate'>
+      <input type="text" placeholder="Amount" formControlName='amount'>
+    </div>
+
+    <div class="select-users-wraper">
+        <div (click)='toggleUsers()' class="select-users">Paied for : (select friends)</div>
+        <div *ngIf='showUsers' class="users-div">
+          <div *ngFor='let user of users' class="user-row"> <easy-checkbox (checkboxClicked)='manageUser($event, user._id)'></easy-checkbox><div>{{user.firstName}} {{user.lastName}}</div></div>
+        </div>
+    </div>
+    <div class="buttons-list">
+      <button class="cancel">Cancel</button>
+      <button class="validate" [disabled]='addExpenseForm.invalid' (click)='addExpense(addExpenseForm.value)'>Add expense</button>
+    </div>
+  </form>
+</div>

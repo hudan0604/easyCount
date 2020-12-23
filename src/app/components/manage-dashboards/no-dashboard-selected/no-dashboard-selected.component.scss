@@ -1,0 +1,20 @@
+:host {
+  flex: 1;
+  margin: auto;
+  width: 60rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon {
+  margin-bottom: 2rem;
+  font-size: 6.8rem;
+  color: grey;
+}
+
+.text {
+  text-align: center;
+  line-height: 2.4rem;
+}

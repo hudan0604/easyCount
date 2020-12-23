@@ -5,12 +5,16 @@ import { RowSelectedService } from 'src/app/shared/services/row-selected.service
 
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
+import {
+    AbstractHandleCheckedItemsClass
+} from '../../../shared/abstract-classes/abstract-handle-checked-items.class';
+
 @Component({
   selector: 'easy-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
-export class RowComponent implements OnInit, OnChanges, OnDestroy {
+export class RowComponent extends AbstractHandleCheckedItemsClass implements OnInit, OnChanges, OnDestroy {
   @Input() dashboard: DashboardModel;
   @Input() rowIndex: number;
   @Input() hideBackgroundSelectedRows: boolean;
@@ -26,7 +30,9 @@ export class RowComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private rowSelectedService: RowSelectedService,
     private localStorage: LocalStorageService,
-  ) { }
+  ) {
+    super(localStorage);
+  }
 
   /**
    * @param status boolean that indicates if we check and highlight the row
@@ -34,10 +40,10 @@ export class RowComponent implements OnInit, OnChanges, OnDestroy {
   highlightSelectedRows(status: boolean, dashboardId: string): void {
     // if checkbox is checked, delete the background of the active row (if exists)
     if (status) {
-      this.addDashboardToListThatWillBeRemoved(dashboardId);
+      this.addItemToTheListToHandle(dashboardId);
       this.rowSelectedService.deleteBackgroundFromActiveRow(true);
     } else {
-      this.deleteDashboardFromListThatWillBeRemoved(dashboardId);
+      this.removeItemFromTheListToHandle(dashboardId);
     }
     /**
      * if checkbox is checked, we set a background for its row
@@ -49,28 +55,28 @@ export class RowComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * @param id the id of the dashboard we want to remove
    */
-  addDashboardToListThatWillBeRemoved(dashboardId: string) {
-    const dashboardsInLS = this.localStorage.getValueParsed('dashboards-to-delete');
-    const listToDelete = dashboardsInLS ? dashboardsInLS : [];
-    listToDelete.push(dashboardId.toString());
-    this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
-    this.refreshListOfDashboardsToDeleteInLS();
-  }
+  // addDashboardToListThatWillBeRemoved(dashboardId: string) {
+  //   const dashboardsInLS = this.localStorage.getValueParsed('dashboards-to-delete');
+  //   const listToDelete = dashboardsInLS ? dashboardsInLS : [];
+  //   listToDelete.push(dashboardId.toString());
+  //   this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
+  //   this.refreshListOfDashboardsToDeleteInLS();
+  // }
 
-  deleteDashboardFromListThatWillBeRemoved(dashboardId: string) {
-    let listToDelete = this.localStorage.getValueParsed('dashboards-to-delete');
-    listToDelete = listToDelete.filter((id: string) => id !== dashboardId);
-    this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
-    this.refreshListOfDashboardsToDeleteInLS();
-  }
+  // deleteDashboardFromListThatWillBeRemoved(dashboardId: string) {
+  //   let listToDelete = this.localStorage.getValueParsed('dashboards-to-delete');
+  //   listToDelete = listToDelete.filter((id: string) => id !== dashboardId);
+  //   this.localStorage.setItemStringified('dashboards-to-delete', listToDelete);
+  //   this.refreshListOfDashboardsToDeleteInLS();
+  // }
 
   setRowIndexInService() {
     this.rowSelectedService.setRowIndex(this.rowIndex);
   }
 
-  refreshListOfDashboardsToDeleteInLS() {
-    this.localStorage.refreshValueOfDashboardsListWeWantToDelete();
-  }
+  // refreshListOfDashboardsToDeleteInLS() {
+  //   this.localStorage.refe();
+  // }
 
   isUserDashboardCreator(): boolean {
     return this.dashboard.dashboardCreator === this.localStorage.getValueParsed('user')._id ? true : false;

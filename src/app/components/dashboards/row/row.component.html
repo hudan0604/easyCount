@@ -1,6 +1,6 @@
 <div [ngClass]="{'highlight-selected': highlightSelected, 'row-active': rowActive && !highlightSelected}" class="row">
   <div class="cell" >
-    <easy-checkbox *ngIf='isUserDashboardCreator()' [unCheckCheckbox]='uncheck' (checkboxClickedHighlightRow)='highlightSelectedRows($event, dashboard._id)'></easy-checkbox>
+    <easy-checkbox *ngIf='isUserDashboardCreator()' [unCheckCheckbox]='uncheck' (checkboxClicked)='highlightSelectedRows($event, dashboard._id)'></easy-checkbox>
     <div class="activityName">{{dashboard.activityName}}</div>
   </div>
   <div class="cell" >{{dashboard.people.length}}</div>

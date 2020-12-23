@@ -1,0 +1,4 @@
+<select (change)='dosomething($event)'>
+  <option selected='selected' value='doNothing'>Select a dashboard</option>
+  <option *ngFor='let dashboard of dashboards' [value]="dashboard._id">{{dashboard.activityName}}</option>
+</select>
