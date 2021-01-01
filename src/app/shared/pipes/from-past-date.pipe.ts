@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'fromPastDate'})
 export class FromPastDatePipe implements PipeTransform {
   transform(value, args) {
-  return moment(value).from(value);
+  return moment(value).fromNow();
   }
 }
