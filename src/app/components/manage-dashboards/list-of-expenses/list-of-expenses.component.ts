@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ExpenseModel } from 'src/app/shared/models/expense.models';
+
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'easy-list-of-expenses',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOfExpensesComponent implements OnInit {
 
-  constructor() { }
+  @Input() expenses: ExpenseModel[];
+
+  constructor(
+  ) { }
 
   ngOnInit() {
   }

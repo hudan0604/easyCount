@@ -3,3 +3,24 @@
   margin-left: 1rem;
   background: #c7c1c16b;
 }
+
+.onglets-wraper {
+  display: flex;
+  height: 1.8rem;
+  background: #a09999;
+  color: white;
+
+  .onglet {
+    opacity: 0.35;
+    flex: 1;
+    cursor: pointer;
+    padding-left: 0.8rem;
+    align-items: center;
+    display: flex;
+  }
+
+  .active {
+    opacity: 1;
+    border-bottom: 3px solid #4594c6;
+  }
+}

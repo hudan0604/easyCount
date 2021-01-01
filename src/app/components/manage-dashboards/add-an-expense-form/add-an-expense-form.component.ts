@@ -5,6 +5,7 @@ import { UserModel } from 'src/app/shared/models/users.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 import { ExpenseService } from 'src/app/shared/services/expense.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -14,11 +15,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
     AbstractHandleCheckedItemsClass
 } from '../../../shared/abstract-classes/abstract-handle-checked-items.class';
+import {
+    SynthesisOfExpensesComponent
+} from '../synthesis-of-expenses/synthesis-of-expenses.component';
 
 @Component({
   selector: 'easy-add-an-expense-form',
   templateUrl: './add-an-expense-form.component.html',
-  styleUrls: ['./add-an-expense-form.component.scss']
+  styleUrls: ['./add-an-expense-form.component.scss'],
+  providers: [
+    SynthesisOfExpensesComponent
+  ]
 })
 export class AddAnExpenseFormComponent extends AbstractHandleCheckedItemsClass implements OnInit, OnDestroy {
 
@@ -39,7 +46,8 @@ export class AddAnExpenseFormComponent extends AbstractHandleCheckedItemsClass i
     private expenseService: ExpenseService,
     private toastService: ToastService,
     private route: ActivatedRoute,
-    public localStorage: LocalStorageService
+    public localStorage: LocalStorageService,
+    private routingService: RoutingService
   ) {
     super(localStorage);
   }
@@ -73,11 +81,15 @@ export class AddAnExpenseFormComponent extends AbstractHandleCheckedItemsClass i
     expense.dashboardId = this.dashboardId;
     expense.paiedBy = this.localStorage.getValueParsed('user')._id;
     this.addExpenseSubscription = this.expenseService.addExpense(expense)
-      .subscribe((expense: ExpenseModel) => {
+      .subscribe(() => {
         this.toastService.openToast('success', 'Expense added successfully !');
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.returnToAddExpenseIcon().then(()=> this.routingService.reloadUrl());
       },
         (error) => this.toastService.openToast('error', error));
+  }
+
+  returnToAddExpenseIcon(): Promise<boolean> {
+    return this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   ngOnInit() {

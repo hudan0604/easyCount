@@ -1,0 +1,15 @@
+.expenses-wraper {
+  .expense {
+    background: #f7fbfee3;
+    border-bottom: 1px solid #e3c214;
+    padding: 0.5rem;
+
+    &_row {
+      display: flex;
+
+      .left-part-of-row {
+        flex: 1;
+      }
+    }
+  }
+}

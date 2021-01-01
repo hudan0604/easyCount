@@ -1,1 +1,6 @@
-<p>synthesis-of-expenses works!</p>
+<div class="onglets-wraper">
+  <div (click)='toggleOnglet(true)' class="onglet" [class.active]='showExpensesComponent'>Expenses</div>
+  <div (click)='toggleOnglet(false)' class="onglet" [class.active]='!showExpensesComponent'>Balance</div>
+</div>
+<easy-list-of-expenses *ngIf='showExpensesComponent' [expenses]='expensesInDashboard'></easy-list-of-expenses>
+<easy-balance *ngIf='!showExpensesComponent'></easy-balance>

@@ -61,7 +61,7 @@ const MANAGE_DASHBOARDS_ROUTES: Routes = [
     ManageDashboardsComponent,
     NoDashboardSelectedComponent,
     ListOfExpensesComponent,
-    BalanceComponent
+    BalanceComponent,
   ],
   imports: [
     CommonModule,

@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="buttons-list">
-      <button class="cancel">Cancel</button>
+      <button class="cancel" (click)='returnToAddExpenseIcon()'>Cancel</button>
       <button class="validate" [disabled]='addExpenseForm.invalid' (click)='addExpense(addExpenseForm.value)'>Add expense</button>
     </div>
   </form>

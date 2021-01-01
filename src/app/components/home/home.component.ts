@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
 import { DashboardModel } from 'src/app/shared/models/dashboards.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
@@ -26,6 +25,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.dashboardsSubscription.unsubscribe();
+    if (this.dashboardsSubscription) this.dashboardsSubscription.unsubscribe();
   }
 }
