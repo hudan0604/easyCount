@@ -1,0 +1,49 @@
+.balances-wraper {
+
+  .balance-row {
+    background: #f7fbfee3;
+    border-bottom: 1px solid #e3c214;
+    padding: 0.5rem;
+    display: flex;
+
+    .balance-name-wraper {
+      display: flex;
+      flex: 1;
+      align-items: center;
+
+      .person-name-div {
+        flex: 0.5;
+
+        &-positive {
+          text-align: right;
+        }
+
+        &-negative {
+          text-align: left;
+        }
+      }
+
+      .balance-wraper {
+        flex: 0.5;
+      }
+    }
+
+
+
+    .debt-balance {
+      background: rgb(236, 59, 59);
+      height: 2rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .positive-balance {
+      background: #6dd16d;
+      height: 2rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
