@@ -1,4 +1,5 @@
 import { DashboardModel } from 'src/app/shared/models/dashboards.models';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,13 +14,14 @@ export class DashboardsDropdownComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private routingService: RoutingService
   ) { }
 
   dosomething($event) {
     const value = $event.target.value;
     if (value !== 'doNothing') {
-      this.router.navigate([`detail/${$event.target.value}`], { relativeTo: this.route });
+      this.router.navigate([`detail/${$event.target.value}`], { relativeTo: this.route }).then(()=> this.routingService.reloadUrl());
     }
   }
 

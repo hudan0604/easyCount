@@ -2,7 +2,7 @@
   <div *ngFor='let expense of expenses' class="expense">
     <div class="expense_row">
       <div class="left-part-of-row">{{expense.expenseName}}</div>
-      <div>{{expense.amount | currency:'EUR':'code':'.2'}}</div>
+      <div>{{expense.amount | number:'.2'}} €</div>
     </div>
     <div class="expense_row">
       <div class="left-part-of-row">Paied by <strong>{{expense.paiedBy.firstName}} {{expense.paiedBy.lastName}}</strong></div>

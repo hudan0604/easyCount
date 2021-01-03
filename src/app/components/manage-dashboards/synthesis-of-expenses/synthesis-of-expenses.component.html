@@ -3,4 +3,4 @@
   <div (click)='toggleOnglet(false)' class="onglet" [class.active]='!showExpensesComponent'>Balance</div>
 </div>
 <easy-list-of-expenses *ngIf='showExpensesComponent' [expenses]='expensesInDashboard'></easy-list-of-expenses>
-<easy-balance *ngIf='!showExpensesComponent'></easy-balance>
+<easy-balance *ngIf='!showExpensesComponent' [expenses]='expensesInDashboard'></easy-balance>

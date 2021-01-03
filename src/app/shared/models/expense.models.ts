@@ -5,6 +5,6 @@ export interface ExpenseModel {
   creationDate: string,
   amount: number,
   paiedBy: UserModel,
-  forPeople: string,
+  forPeople: UserModel[],
   dashboardId: string
 }
