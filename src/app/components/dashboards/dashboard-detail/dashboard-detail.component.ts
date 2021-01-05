@@ -3,7 +3,7 @@ import { DashboardModel } from 'src/app/shared/models/dashboards.models';
 import { DashboardsService } from 'src/app/shared/services/dashboards.service';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'easy-dashboard-detail',
@@ -26,8 +26,13 @@ export class DashboardDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private dashboardService: DashboardsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
+
+  goToManageDashboard(dashboardId: string) {
+    this.router.navigateByUrl(`/manage-dashboard/detail/${dashboardId}`);
+  }
 
   ngOnInit() {
     this.dashboardSubscription = this.route.paramMap.subscribe((params: ParamMap) => {
