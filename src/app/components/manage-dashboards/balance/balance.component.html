@@ -1,23 +1,25 @@
-<div class="balances-wraper">
-  <!-- Each person balance -->
-  <div *ngFor='let person of finalArrayOfBalances' class="balance-row">
-    <div *ngIf='isBalancePositive(person.balance); else negativeBalance' class="balance-name-wraper">
-      <div class="person-name-div person-name-div-positive">
-        {{person.personFullName}}
-      </div>
-      <div class="balance-wraper">
-        <div [class]="calculateBalanceRowWidth(person.balance, 'positive')">+{{person.balance}} €</div>
-      </div>
-    </div>
-    <ng-template #negativeBalance>
-      <div class="balance-name-wraper">
-        <div class="balance-wraper balance-wraper-negative">
-          <div [class]="calculateBalanceRowWidth(person.balance, 'negative')">{{person.balance}} €</div>
-        </div>
-        <div class="person-name-div person-name-div-negative">
+  <div class="balances-wraper">
+    <!-- Each person balance -->
+    <div *ngFor='let person of finalArrayOfBalances' class="balance-row">
+      <div *ngIf='isBalancePositive(person.balance); else negativeBalance' class="balance-name-wraper">
+        <div class="person-name-div person-name-div-positive">
           {{person.personFullName}}
         </div>
+        <div class="balance-wraper">
+          <div [class]="calculateBalanceRowWidth(person.balance, 'positive')">+{{person.balance}} €</div>
+        </div>
       </div>
-    </ng-template>
+      <ng-template #negativeBalance>
+        <div class="balance-name-wraper">
+          <div class="balance-wraper balance-wraper-negative">
+            <div [class]="calculateBalanceRowWidth(person.balance, 'negative')">{{person.balance}} €</div>
+          </div>
+          <div class="person-name-div person-name-div-negative">
+            {{person.personFullName}}
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
-</div>
+
+  <easy-how-to-balance [expenses]='expenses'></easy-how-to-balance>

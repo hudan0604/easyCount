@@ -1,0 +1,13 @@
+<div class="title">How to balance expenses ?</div>
+<div class="balances-wraper">
+  <div *ngFor='let personDebts of finalArrayOfPersonalDebts' class="person-debts">
+    <div class="person-name">{{personDebts.name}}</div>
+    <div *ngFor='let debt of personDebts.debts' class="debt">
+      <div class="debt-text-wraper">
+        <div>Owes to</div>
+        <div class="person-who-paied">{{debt.to}}</div>
+      </div>
+      <div class="amount">{{debt.owes}} €</div>
+    </div>
+  </div>
+</div>

@@ -23,6 +23,7 @@ import {
 import {
     SynthesisOfExpensesComponent
 } from './synthesis-of-expenses/synthesis-of-expenses.component';
+import { HowToBalanceComponent } from './how-to-balance/how-to-balance.component';
 
 const MANAGE_DASHBOARDS_ROUTES: Routes = [
   {
@@ -62,6 +63,7 @@ const MANAGE_DASHBOARDS_ROUTES: Routes = [
     NoDashboardSelectedComponent,
     ListOfExpensesComponent,
     BalanceComponent,
+    HowToBalanceComponent,
   ],
   imports: [
     CommonModule,

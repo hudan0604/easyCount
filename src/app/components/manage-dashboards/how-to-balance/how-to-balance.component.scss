@@ -1,0 +1,49 @@
+.title {
+  background: rgb(207, 200, 200);
+  height: 3rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.balances-wraper {
+  padding: 1rem;
+  background: white;
+  height: 10rem;
+  overflow-y: scroll;
+
+  .person-debts {
+    background: #fef3f3;
+    border: 1px solid gold;
+    border-radius: 3px;
+    padding: 0.5rem;
+    margin-bottom: 0.6rem;
+
+    .person-name {
+      font-size: 1.3rem;
+      color: #079af8;
+      margin-bottom: 0.5rem;
+    }
+
+    .debt {
+      margin: auto auto 0.5rem auto;
+      display: flex;
+      height: 3rem;
+      line-height: 1.5rem;
+      width: 95%;
+
+      &-text-wraper {
+        flex: 1;
+
+        .person-who-paied {
+          font-size: 1.1rem;
+          color: #4594c6;
+        }
+      }
+
+      .amount {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
