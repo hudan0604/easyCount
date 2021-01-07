@@ -16,34 +16,47 @@
 
         &-positive {
           text-align: right;
+          padding-right: 0.35rem;
         }
 
         &-negative {
           text-align: left;
+          padding-left: 0.35rem;
         }
       }
 
       .balance-wraper {
         flex: 0.5;
+
+        &-negative {
+          display: flex;
+          justify-content: right;
+        }
       }
     }
 
-
-
-    .debt-balance {
-      background: rgb(236, 59, 59);
+    .balance {
       height: 2rem;
       border-radius: 5px;
       display: flex;
       align-items: center;
-    }
 
-    .positive-balance {
-      background: #6dd16d;
-      height: 2rem;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
+      &-debt {
+        background: #ec3b3b;
+        justify-content: right;
+        padding-right: 0.5rem;
+      }
+
+      &-positive {
+        background: #6dd16d;
+        padding-left: 0.2rem;
+      }
     }
+  }
+}
+
+@for $i from 1 through 100 {
+  .width_#{$i} {
+    width: $i *1%;
   }
 }

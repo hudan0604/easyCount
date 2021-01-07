@@ -6,13 +6,13 @@
         {{person.personFullName}}
       </div>
       <div class="balance-wraper">
-        <div class="positive-balance">+{{person.balance}} €</div>
+        <div [class]="calculateBalanceRowWidth(person.balance, 'positive')">+{{person.balance}} €</div>
       </div>
     </div>
     <ng-template #negativeBalance>
       <div class="balance-name-wraper">
-        <div class="balance-wraper">
-          <div class="debt-balance">{{person.balance}} €</div>
+        <div class="balance-wraper balance-wraper-negative">
+          <div [class]="calculateBalanceRowWidth(person.balance, 'negative')">{{person.balance}} €</div>
         </div>
         <div class="person-name-div person-name-div-negative">
           {{person.personFullName}}

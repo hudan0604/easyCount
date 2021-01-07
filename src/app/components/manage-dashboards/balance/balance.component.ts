@@ -13,11 +13,13 @@ export class BalanceComponent implements OnInit {
   @Input() expenses: ExpenseModel[];
   expensesBalance = {};
   finalArrayOfBalances = [];
+  expensesTotal: number = null;
 
   constructor() { }
 
   calculateEachPersonBalance() {
     this.expenses.map((expense: ExpenseModel) => {
+      this.expensesTotal += expense.amount;
       const fullName = `${expense.paiedBy.firstName} ${expense.paiedBy.lastName}`;
       this.expensesBalance[fullName] = this.expensesBalance[fullName] ? this.expensesBalance[fullName] + expense.amount : expense.amount;
       expense.forPeople.map((user: UserModel) => {
@@ -36,6 +38,10 @@ export class BalanceComponent implements OnInit {
 
   isBalancePositive(balance: string): boolean {
     return balance.toString().includes('-') ? false : true;
+  }
+
+  calculateBalanceRowWidth(personBalance: number, balanceSign: 'positive' | 'negative'): string {
+    return balanceSign === 'positive' ? "balance balance-positive width_" + Math.round((personBalance / this.expensesTotal) * 100) : "balance balance-debt width_" + Math.round((Math.abs(personBalance) / this.expensesTotal) * 100);
   }
 
   ngOnInit() {
